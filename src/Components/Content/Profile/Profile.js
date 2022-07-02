@@ -25,7 +25,7 @@ const Profile = () => {
                 City: <a href="https://google.com">Kiev</a>
               </li>
               <li>
-                Education: <a href="https://google.com">'KPI'</a>
+                Education: <a href="https://google.com">KPI</a>
               </li>
               <li>
                 Web Site: <a href="https://google.com">https://google.com</a>
