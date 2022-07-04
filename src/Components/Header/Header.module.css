@@ -1,0 +1,18 @@
+.header {
+  grid-area: h;
+  background-color: rgb(55, 154, 48);
+  align-items: center;
+  margin-bottom: 10px;
+  display: flex;
+}
+.logo {
+  flex: 0 0 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  margin-left: 5px;
+}
+.logo img {
+  max-width: 100%;
+  display: block;
+}

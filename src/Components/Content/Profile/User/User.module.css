@@ -1,0 +1,31 @@
+.user {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+}
+.image {
+  margin-right: 10px;
+}
+.image img {
+  height: 170px;
+}
+.description {
+}
+
+.name {
+  font-size: 20px;
+  font-weight: 700;
+  margin-left: 40px;
+}
+.data {
+}
+.data li {
+  font-size: 18px;
+  line-height: 30px;
+  list-style: none;
+  font-weight: 500;
+}
+.data a {
+  color: #000;
+  text-decoration: none;
+}

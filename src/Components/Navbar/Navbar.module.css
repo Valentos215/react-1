@@ -6,18 +6,19 @@
   font-size: 18px;
 }
 
-.nav-menu {
+.menu {
   margin: 20px 0 0 20px;
 }
 
-.nav-item {
+.item {
   font-size: 18px;
   line-height: 28px;
 }
-.nav-item:last-child {
+.item:last-child {
   margin-top: 25px;
 }
 
-.nav-item a {
+.item a {
   color: #fff;
+  text-decoration: none;
 }
