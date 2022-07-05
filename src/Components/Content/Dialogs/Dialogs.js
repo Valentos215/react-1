@@ -1,17 +1,17 @@
 import s from "./Dialogs.module.css";
 import Message from "./Message/Message";
 import DialogItem from "./DialogItem/DialogItem";
-import { usersData, messagesData } from "../../../DataBase";
+import state from "../../../redux/state";
 
 const Dialogs = (props) => {
-  const dialogsArray = usersData.map((d) => (
+  const dialogsArray = state.usersData.map((d) => (
     <DialogItem name={d.name} id={d.id} />
   ));
 
-  const messagesArray = messagesData.map((mes, i) => (
+  const messagesArray = state.messagesData.map((mes, i) => (
     <Message
-      name={usersData[i].name}
-      image={usersData[i].image}
+      name={state.usersData[i].name}
+      image={state.usersData[i].image}
       message={mes.message}
     />
   ));

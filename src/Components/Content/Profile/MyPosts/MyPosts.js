@@ -1,13 +1,13 @@
 import s from "./MyPosts.module.css";
 import PostedItem from "./PostedItem/PostedItem";
-import { usersData, postData } from "../../../../DataBase";
+import state from "../../../../redux/state";
 
 const MyPosts = () => {
-  const postsArray = postData.map((post, i) => (
+  const postsArray = state.postData.map((post, i) => (
     <PostedItem
       postText={post.text}
       likes={post.likes}
-      image={usersData[i].image}
+      image={state.usersData[i].image}
     />
   ));
 
