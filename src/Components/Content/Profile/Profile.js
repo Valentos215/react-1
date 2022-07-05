@@ -1,5 +1,5 @@
 import MyPosts from "./MyPosts/MyPosts";
-import User from "./User/User";
+import UserInfo from "./UserInfo/UserInfo";
 import s from "./Profile.module.css";
 
 const Profile = () => {
@@ -11,7 +11,7 @@ const Profile = () => {
           src="https://image.shutterstock.com/image-photo/wide-panorama-beautiful-autumn-field-260nw-751127782.jpg"
         ></img>
       </div>
-      <User />
+      <UserInfo />
       <MyPosts />
     </div>
   );

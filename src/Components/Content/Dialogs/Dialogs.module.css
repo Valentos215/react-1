@@ -1,0 +1,61 @@
+.dialogs {
+  margin-left: 20px;
+}
+.title {
+  font-size: 25px;
+  text-transform: uppercase;
+  margin: 20px 0 20px 20px;
+}
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 2px 3fr;
+}
+.dialogsArea {
+  display: flex;
+  flex-direction: column;
+}
+.dialog {
+  position: relative;
+  font-size: 18px;
+  line-height: 50px;
+  padding-left: 30px;
+}
+.dialog {
+}
+.dialog:before {
+  content: "";
+  background-color: rgba(0, 128, 255, 0.595);
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: 40%;
+  left: 0;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.dialog a {
+  text-decoration: none;
+  color: black;
+}
+.dialog a.activeLink {
+  font-weight: 700;
+  background-color: rgba(0, 128, 255, 0.285);
+}
+.messages {
+  margin-left: 40px;
+}
+
+.line {
+  position: relative;
+  width: 2px;
+  height: 100%;
+}
+.line:before {
+  content: "";
+  background-color: rgba(0, 128, 255, 0.595);
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  top: 0;
+  left: 0;
+}

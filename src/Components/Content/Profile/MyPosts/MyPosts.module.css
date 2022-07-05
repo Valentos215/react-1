@@ -26,6 +26,8 @@
   font-weight: 500;
   color: #fff;
   align-self: end;
+  border-radius: 8px;
+  overflow: hidden;
 }
 .posted {
 }

@@ -1,6 +1,6 @@
-import s from "./User.module.css";
+import s from "./UserInfo.module.css";
 
-const User = () => {
+const UserInfo = () => {
   return (
     <div className={s.user}>
       <div className={s.image}>
@@ -30,4 +30,4 @@ const User = () => {
   );
 };
 
-export default User;
+export default UserInfo;

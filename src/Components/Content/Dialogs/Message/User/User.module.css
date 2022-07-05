@@ -1,0 +1,24 @@
+.user {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.image {
+  position: relative;
+  flex: 0 0 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  width: 50px;
+}
+.image img {
+  height: 100%;
+  display: block;
+}
+.name {
+  position: relative;
+  margin-top: 5px;
+  font-size: 18px;
+  line-height: 25px;
+  align-self: center;
+}
