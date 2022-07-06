@@ -6,9 +6,7 @@ const User = (props) => {
   return (
     <div className={s.user}>
       <UserImage user={props.user} />
-      <div className={s.name}>
-        <NavLink to={"/users/user" + props.user.id}>{props.user.name}</NavLink>
-      </div>
+      <div className={s.name}>{props.user.name}</div>
     </div>
   );
 };

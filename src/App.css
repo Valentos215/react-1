@@ -16,3 +16,7 @@
   grid-area: c;
   height: 100%;
 }
+
+a {
+  text-decoration: none;
+}

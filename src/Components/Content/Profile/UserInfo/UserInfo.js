@@ -20,7 +20,9 @@ const UserInfo = () => {
             <li>
               Date of Birth: {day} {month} {year}
             </li>
-            <li>City: {uState.city}</li>
+            <li>
+              City: <a href="https://google.com">{uState.city}</a>
+            </li>
             <li>
               Education: <a href="https://google.com">{uState.education}</a>
             </li>
