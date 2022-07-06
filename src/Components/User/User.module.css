@@ -8,7 +8,6 @@
   flex: 0 0 50px;
   border-radius: 50%;
   overflow: hidden;
-  cursor: pointer;
   width: 50px;
 }
 .image img {
@@ -17,8 +16,10 @@
 }
 .name {
   position: relative;
-  margin-top: 5px;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 25px;
   align-self: center;
+}
+.name a {
+  text-decoration: none;
 }

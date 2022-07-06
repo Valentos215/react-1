@@ -1,12 +1,26 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+}
+
 .dialog {
   position: relative;
+  padding-left: 20px;
+  margin-left: 20px;
+}
+
+.dialog a {
+  text-decoration: none;
+  color: black;
   font-size: 18px;
   line-height: 50px;
-  padding-left: 30px;
 }
-.dialog {
+.dialog a.activeLink {
+  font-weight: 700;
 }
-.dialog:before {
+
+.dialog a.activeLink::before {
   content: "";
   background-color: rgba(0, 128, 255, 0.595);
   position: absolute;
@@ -16,11 +30,4 @@
   left: 0;
   border-radius: 50%;
   overflow: hidden;
-}
-.dialog a {
-  text-decoration: none;
-  color: black;
-}
-.dialog a.activeLink {
-  font-weight: 700;
 }

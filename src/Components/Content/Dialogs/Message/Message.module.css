@@ -1,16 +1,10 @@
 .message {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 30px;
-  margin-left: 20px;
-}
-.text {
   position: relative;
+  height: 50%;
   font-size: 18px;
-  line-height: 20px;
-  flex: 1 0 auto;
+  flex: 0 1 auto;
   padding-top: 15px;
-  margin-left: 40px;
+  margin: 0 30px;
   padding: 15px;
   border: 1px solid rgba(0, 128, 255, 0.595);
   border-radius: 10px;

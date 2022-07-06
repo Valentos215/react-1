@@ -1,0 +1,9 @@
+.message {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  margin-bottom: 10px;
+}
+.message a {
+  color: #000;
+}

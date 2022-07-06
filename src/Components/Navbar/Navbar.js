@@ -1,51 +1,23 @@
-import { NavLink } from "react-router-dom";
+import Friends from "./Friends/Friends";
 import s from "./Navbar.module.css";
+import NavItem from "./NavItem/NavItem";
 
 const Navbar = () => {
+  const navArray = [
+    { title: "Profile", link: "/profile" },
+    { title: "Dialogs", link: "/dialogs" },
+    { title: "News", link: "/news" },
+    { title: "Music", link: "/music" },
+    { title: "Settings", link: "/settings" },
+  ];
+  const navMenu = navArray.map((item) => (
+    <NavItem title={item.title} link={item.link} />
+  ));
+
   return (
     <nav className={s.nav}>
-      <div className={s.menu}>
-        <div className={s.item}>
-          <NavLink
-            to="/profile"
-            className={({ isActive }) => (isActive ? s.activeLink : undefined)}
-          >
-            Profile
-          </NavLink>
-        </div>
-        <div className={s.item}>
-          <NavLink
-            to="/dialogs"
-            className={({ isActive }) => (isActive ? s.activeLink : undefined)}
-          >
-            Messages
-          </NavLink>
-        </div>
-        <div className={s.item}>
-          <NavLink
-            to="/news"
-            className={({ isActive }) => (isActive ? s.activeLink : undefined)}
-          >
-            News
-          </NavLink>
-        </div>
-        <div className={s.item}>
-          <NavLink
-            to="/music"
-            className={({ isActive }) => (isActive ? s.activeLink : undefined)}
-          >
-            Music
-          </NavLink>
-        </div>
-        <div className={s.item}>
-          <NavLink
-            to="/settings"
-            className={({ isActive }) => (isActive ? s.activeLink : undefined)}
-          >
-            Settings
-          </NavLink>
-        </div>
-      </div>
+      <div className={s.menu}>{navMenu}</div>
+      <Friends />
     </nav>
   );
 };

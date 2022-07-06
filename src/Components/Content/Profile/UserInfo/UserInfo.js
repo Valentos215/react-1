@@ -1,27 +1,31 @@
 import s from "./UserInfo.module.css";
+import state from "../../../../redux/state";
 
 const UserInfo = () => {
+  let uState = state.profileData;
+  const month = uState.birthDay.toLocaleString("en-US", { month: "long" });
+  const day = uState.birthDay.toLocaleString("en-US", { day: "2-digit" });
+  const year = uState.birthDay.getFullYear();
   return (
     <div className={s.user}>
       <div className={s.image}>
-        <img
-          alt="HZ"
-          src="https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg"
-        ></img>
+        <img alt="HZ" src={uState.image}></img>
       </div>
       <div className={s.description}>
-        <div className={s.name}>Vale K.</div>
+        <div className={s.name}>
+          {uState.name} {uState.sureName[0]}.
+        </div>
         <div className={s.data}>
           <ul>
-            <li>Date of Birth: 18 february</li>
             <li>
-              City: <a href="https://google.com">Kiev</a>
+              Date of Birth: {day} {month} {year}
+            </li>
+            <li>City: {uState.city}</li>
+            <li>
+              Education: <a href="https://google.com">{uState.education}</a>
             </li>
             <li>
-              Education: <a href="https://google.com">KPI</a>
-            </li>
-            <li>
-              Web Site: <a href="https://google.com">https://google.com</a>
+              Web Site: <a href={uState.webSite}>{uState.webSite}</a>
             </li>
           </ul>
         </div>

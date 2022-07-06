@@ -16,7 +16,9 @@
 }
 
 .messages {
-  margin-left: 40px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 40px;
 }
 
 .line {

@@ -7,7 +7,7 @@ const MyPosts = () => {
     <PostedItem
       postText={post.text}
       likes={post.likes}
-      image={state.usersData[i].image}
+      user={state.usersData[post.usId]}
     />
   ));
 
