@@ -49,26 +49,27 @@ let store = {
   getState() {
     return this._state;
   },
-  postChangeData(postMessage) {
-    this._state.profileData.newPost = postMessage;
-    this._callSubscriber(this);
-  },
-  addPostData() {
-    let newId = this._state.profileData.wallData.length + 1;
-    let randomUsId = () => {
-      let random = Math.round((Math.random() / 2) * 10);
-      if (random === 0) return 6;
-      else return random;
-    };
-    let newPost = {
-      id: newId,
-      text: this._state.profileData.newPost,
-      likes: 0,
-      usId: randomUsId(),
-    };
-    this._state.profileData.wallData.push(newPost);
-    this._state.profileData.newPost = "";
-    this._callSubscriber(this);
+  dispatch(action) {
+    if (action.type === "UPDATE-NEW-POST-TEXT") {
+      this._state.profileData.newPost = action.postMessage;
+      this._callSubscriber(this);
+    } else if (action.type === "ADD-POST") {
+      let newId = this._state.profileData.wallData.length + 1;
+      let randomUsId = () => {
+        let random = Math.round((Math.random() / 2) * 10);
+        if (random === 0) return 6;
+        else return random;
+      };
+      let newPost = {
+        id: newId,
+        text: this._state.profileData.newPost,
+        likes: 0,
+        usId: randomUsId(),
+      };
+      this._state.profileData.wallData.push(newPost);
+      this._state.profileData.newPost = "";
+      this._callSubscriber(this);
+    }
   },
 };
 

@@ -15,11 +15,14 @@ const UsPosts = (props) => {
 
   let newPostElement = React.createRef();
   let onPostChange = () => {
-    let postMessage = newPostElement.current.value;
-    props.store.postChangeData(postMessage);
+    let currentMessage = newPostElement.current.value;
+    props.store.dispatch({
+      type: "UPDATE-NEW-POST-TEXT",
+      postMessage: currentMessage,
+    });
   };
   let buttonClick = () => {
-    props.store.addPostData();
+    props.store.dispatch({ type: "ADD-POST" });
   };
 
   return (
