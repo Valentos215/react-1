@@ -3,6 +3,7 @@ import MyMessage from "./MyMessage/MyMessage";
 import DialogItem from "./DialogItem/DialogItem";
 import state from "../../../redux/state";
 import FriendMessage from "./FriendMessage/FriendMessage";
+import NewMessage from "./NewMessage copy/NewMessage";
 
 const Dialogs = (props) => {
   const dialogsArray = state.usersData
@@ -22,6 +23,7 @@ const Dialogs = (props) => {
             user={state.usersData[2]}
             message={state.messagesData[0].message}
           />
+          <NewMessage />
         </div>
       </div>
     </div>

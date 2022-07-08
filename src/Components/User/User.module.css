@@ -3,17 +3,6 @@
   display: flex;
   flex-direction: column;
 }
-.image {
-  position: relative;
-  flex: 0 0 50px;
-  border-radius: 50%;
-  overflow: hidden;
-  width: 50px;
-}
-.image img {
-  height: 100%;
-  display: block;
-}
 .name {
   position: relative;
   font-size: 16px;

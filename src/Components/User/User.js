@@ -1,5 +1,4 @@
 import s from "./User.module.css";
-import { NavLink } from "react-router-dom";
 import UserImage from "./UserImage/UserImage";
 
 const User = (props) => {

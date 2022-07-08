@@ -1,0 +1,37 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+}
+.form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.input {
+  position: relative;
+  height: 50%;
+  font-size: 18px;
+  padding-top: 15px;
+  margin-left: 30px;
+  padding: 15px;
+  border: 1px solid rgba(0, 128, 255, 0.595);
+  border-radius: 10px;
+  overflow: auto;
+}
+
+.button {
+  position: relative;
+  height: 40px;
+  width: 80px;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 25px;
+  background-color: rgba(0, 128, 255, 0.595);
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  align-self: flex-end;
+  margin-top: 20px;
+  font-weight: 500;
+  color: #fff;
+}
