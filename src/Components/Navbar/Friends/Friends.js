@@ -1,10 +1,12 @@
 import User from "../../User/User";
 import s from "./Friends.module.css";
-import state from "../../../redux/state";
 import { NavLink } from "react-router-dom";
 
-const Friends = () => {
-  const friends = state.usersData.slice(0, 3).map((f) => <User user={f} />);
+const Friends = (props) => {
+  const friends = props.store
+    .getState()
+    .usersData.slice(0, 3)
+    .map((f) => <User user={f} />);
 
   return (
     <div className={s.wrapper}>

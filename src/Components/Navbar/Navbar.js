@@ -2,7 +2,7 @@ import Friends from "./Friends/Friends";
 import s from "./Navbar.module.css";
 import NavItem from "./NavItem/NavItem";
 
-const Navbar = () => {
+const Navbar = (props) => {
   const navArray = [
     { title: "Profile", link: "/profile" },
     { title: "Dialogs", link: "/dialogs" },
@@ -17,7 +17,7 @@ const Navbar = () => {
   return (
     <nav className={s.nav}>
       <div className={s.menu}>{navMenu}</div>
-      <Friends />
+      <Friends store={props.store} />
     </nav>
   );
 };

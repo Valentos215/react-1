@@ -1,7 +1,6 @@
 import React from "react";
 import s from "./NewMessage.module.css";
 import User from "../../../User/User";
-import state from "../../../../redux/state";
 
 const NewMessage = (props) => {
   let newMessage = React.createRef();
@@ -12,7 +11,7 @@ const NewMessage = (props) => {
 
   return (
     <div className={s.wrapper}>
-      <User user={state.profileData} />
+      <User user={props.store.getState().profileData} />
       <form className={s.form}>
         <input
           rows="3"

@@ -1,5 +1,4 @@
 import s from "./UserInfo.module.css";
-import state from "../../../../redux/state";
 
 const UserInfo = (props) => {
   const month = props.user.birthDay.toLocaleString("en-US", { month: "long" });

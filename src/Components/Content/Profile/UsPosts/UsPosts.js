@@ -1,24 +1,25 @@
 import React from "react";
 import s from "./UsPosts.module.css";
 import PostedItem from "./PostedItem/PostedItem";
-import state, { addPostData, postChangeData } from "../../../../redux/state";
 
 const UsPosts = (props) => {
-  const postsArray = props.posts.map((post, i) => (
-    <PostedItem
-      postText={post.text}
-      likes={post.likes}
-      user={state.usersData[post.usId - 1]}
-    />
-  ));
+  const postsArray = props.store
+    .getState()
+    .profileData.wallData.map((post) => (
+      <PostedItem
+        postText={post.text}
+        likes={post.likes}
+        user={props.store.getState().usersData[post.usId - 1]}
+      />
+    ));
 
   let newPostElement = React.createRef();
   let onPostChange = () => {
     let postMessage = newPostElement.current.value;
-    postChangeData(postMessage);
+    props.store.postChangeData(postMessage);
   };
   let buttonClick = () => {
-    addPostData();
+    props.store.addPostData();
   };
 
   return (
@@ -29,7 +30,7 @@ const UsPosts = (props) => {
           <textarea
             ref={newPostElement}
             onChange={onPostChange}
-            value={state.profileData.newPost}
+            value={props.store.getState().profileData.newPost}
             placeholder="your news..."
             className={s.input}
           ></textarea>
