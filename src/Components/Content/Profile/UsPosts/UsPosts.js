@@ -4,7 +4,7 @@ import PostedItem from "./PostedItem/PostedItem";
 import {
   addPostActionCreator,
   updateNewPostActionCreator,
-} from "../../../../redux/state";
+} from "../../../../redux/profile-reducer";
 
 const UsPosts = (props) => {
   let onPostChange = (e) => {

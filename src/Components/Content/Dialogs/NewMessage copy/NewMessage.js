@@ -4,7 +4,7 @@ import User from "../../../User/User";
 import {
   addMessageActionCreator,
   updateNewMessageActionCreator,
-} from "../../../../redux/state";
+} from "../../../../redux/dialogs-reducer";
 
 const NewMessage = (props) => {
   let onMessageChange = (e) => {
