@@ -1,12 +1,17 @@
 import React from "react";
 import s from "./NewMessage.module.css";
 import User from "../../../User/User";
+import {
+  addMessageActionCreator,
+  updateNewMessageActionCreator,
+} from "../../../../redux/state";
 
 const NewMessage = (props) => {
-  let newMessage = React.createRef();
-  let sendMessage = () => {
-    let text = newMessage.current.value;
-    alert(text);
+  let onMessageChange = (e) => {
+    props.store.dispatch(updateNewMessageActionCreator(e.target.value));
+  };
+  let buttonClick = () => {
+    props.store.dispatch(addMessageActionCreator());
   };
 
   return (
@@ -14,13 +19,14 @@ const NewMessage = (props) => {
       <User user={props.store.getState().profileData} />
       <form className={s.form}>
         <input
+          onChange={onMessageChange}
+          value={props.store.getState().dialogsPage.newMessageBody}
           rows="3"
-          ref={newMessage}
           className={s.input}
           type="textarea"
           placeholder="insert your message"
         ></input>
-        <div onClick={sendMessage} className={s.button}>
+        <div onClick={buttonClick} className={s.button}>
           Send
         </div>
       </form>

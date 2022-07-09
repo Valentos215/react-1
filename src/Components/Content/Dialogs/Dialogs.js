@@ -20,11 +20,11 @@ const Dialogs = (props) => {
         <div className={s.messages}>
           <MyMessage
             user={props.store.getState().profileData}
-            message={props.store.getState().messagesData[2].message}
+            message={props.store.getState().dialogsPage.messagesData[0].message}
           />
           <FriendMessage
             user={props.store.getState().usersData[2]}
-            message={props.store.getState().messagesData[0].message}
+            message={props.store.getState().dialogsPage.messagesData[2].message}
           />
           <NewMessage store={props.store} />
         </div>

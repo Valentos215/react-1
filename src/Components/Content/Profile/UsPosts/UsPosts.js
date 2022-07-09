@@ -1,8 +1,19 @@
 import React from "react";
 import s from "./UsPosts.module.css";
 import PostedItem from "./PostedItem/PostedItem";
+import {
+  addPostActionCreator,
+  updateNewPostActionCreator,
+} from "../../../../redux/state";
 
 const UsPosts = (props) => {
+  let onPostChange = (e) => {
+    props.store.dispatch(updateNewPostActionCreator(e.target.value));
+  };
+  let buttonClick = () => {
+    props.store.dispatch(addPostActionCreator());
+  };
+
   const postsArray = props.store
     .getState()
     .profileData.wallData.map((post) => (
@@ -13,25 +24,12 @@ const UsPosts = (props) => {
       />
     ));
 
-  let newPostElement = React.createRef();
-  let onPostChange = () => {
-    let currentMessage = newPostElement.current.value;
-    props.store.dispatch({
-      type: "UPDATE-NEW-POST-TEXT",
-      postMessage: currentMessage,
-    });
-  };
-  let buttonClick = () => {
-    props.store.dispatch({ type: "ADD-POST" });
-  };
-
   return (
     <div className={s.my_posts}>
       <div className={s.title}>My posts</div>
       <form className={s.form}>
         <p>
           <textarea
-            ref={newPostElement}
             onChange={onPostChange}
             value={props.store.getState().profileData.newPost}
             placeholder="your news..."
