@@ -1,6 +1,6 @@
-import UsPosts from "./UsPosts/UsPosts";
 import UserInfo from "./UserInfo/UserInfo";
 import s from "./Profile.module.css";
+import UsPostsContainer from "./UsPosts/UsPostsContainer";
 
 const Profile = (props) => {
   return (
@@ -12,7 +12,7 @@ const Profile = (props) => {
         ></img>
       </div>
       <UserInfo user={props.store.getState().profileData} />
-      <UsPosts store={props.store} />
+      <UsPostsContainer store={props.store} />
     </div>
   );
 };

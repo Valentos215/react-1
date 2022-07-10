@@ -1,28 +1,22 @@
 import React from "react";
-import s from "./UsPosts.module.css";
 import PostedItem from "./PostedItem/PostedItem";
-import {
-  addPostActionCreator,
-  updateNewPostActionCreator,
-} from "../../../../redux/profile-reducer";
+import s from "./UsPosts.module.css";
 
 const UsPosts = (props) => {
-  let onPostChange = (e) => {
-    props.store.dispatch(updateNewPostActionCreator(e.target.value));
-  };
-  let buttonClick = () => {
-    props.store.dispatch(addPostActionCreator());
-  };
+  const postsArray = props.wallData.map((post) => (
+    <PostedItem
+      postText={post.text}
+      likes={post.likes}
+      user={props.users[post.usId - 1]}
+    />
+  ));
 
-  const postsArray = props.store
-    .getState()
-    .profileData.wallData.map((post) => (
-      <PostedItem
-        postText={post.text}
-        likes={post.likes}
-        user={props.store.getState().usersData.users[post.usId - 1]}
-      />
-    ));
+  const postChange = (e) => {
+    props.onPostChange(e.target.value);
+  };
+  const buttonClick = () => {
+    props.onButtonClick();
+  };
 
   return (
     <div className={s.my_posts}>
@@ -30,8 +24,8 @@ const UsPosts = (props) => {
       <form className={s.form}>
         <p>
           <textarea
-            onChange={onPostChange}
-            value={props.store.getState().profileData.newPost}
+            onChange={postChange}
+            value={props.newPostBody}
             placeholder="your news..."
             className={s.input}
           ></textarea>

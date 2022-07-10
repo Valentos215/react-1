@@ -2,7 +2,7 @@ import s from "./Dialogs.module.css";
 import MyMessage from "./MyMessage/MyMessage";
 import DialogItem from "./DialogItem/DialogItem";
 import FriendMessage from "./FriendMessage/FriendMessage";
-import NewMessage from "./NewMessage copy/NewMessage";
+import NewMessageContainer from "./NewMessage/NewMessageContainer";
 
 const Dialogs = (props) => {
   const dialogsArray = props.store
@@ -33,7 +33,7 @@ const Dialogs = (props) => {
             message={props.store.getState().dialogsPage.messagesData[0].message}
           />
           {myMessages}
-          <NewMessage store={props.store} />
+          <NewMessageContainer store={props.store} />
         </div>
       </div>
     </div>
