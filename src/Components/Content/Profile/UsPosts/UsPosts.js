@@ -20,7 +20,7 @@ const UsPosts = (props) => {
       <PostedItem
         postText={post.text}
         likes={post.likes}
-        user={props.store.getState().usersData[post.usId - 1]}
+        user={props.store.getState().usersData.users[post.usId - 1]}
       />
     ));
 

@@ -20,4 +20,7 @@ let rerenderEntireTree = (store) => {
 reportWebVitals();
 
 rerenderEntireTree(store);
-store.subscribe(rerenderEntireTree);
+//store.subscribe(rerenderEntireTree);
+store.subscribe(() => {
+  rerenderEntireTree(store);
+});

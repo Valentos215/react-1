@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 const Friends = (props) => {
   const friends = props.store
     .getState()
-    .usersData.slice(0, 3)
+    .usersData.users.slice(0, 3)
     .map((f) => <User user={f} />);
 
   return (

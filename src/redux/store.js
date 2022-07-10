@@ -9,17 +9,19 @@ import profileReducer from "./profile-reducer";
 
 let store = {
   _state: {
-    usersData: [
-      { id: 1, name: "Andru", image: image1, f: true, o: true, d: true },
-      { id: 2, name: "Ostin", image: image2, f: true, o: false, d: true },
-      { id: 3, name: "Mike", image: image3, f: true, o: true, d: true },
-      { id: 4, name: "Ivan", image: image4, f: true, o: true, d: false },
-      { id: 5, name: "Kolian", image: image5, f: true, bf: true, d: true },
-      { id: 6, name: "Vasilii", image: image1, f: false, o: true, d: true },
-    ],
+    usersData: {
+      users: [
+        { id: 1, name: "Andru", image: image1, f: true, o: true, d: true },
+        { id: 2, name: "Ostin", image: image2, f: true, o: false, d: true },
+        { id: 3, name: "Mike", image: image3, f: true, o: true, d: true },
+        { id: 4, name: "Ivan", image: image4, f: true, o: true, d: false },
+        { id: 5, name: "Kolian", image: image5, f: true, bf: true, d: true },
+        { id: 6, name: "Vasilii", image: image1, f: false, o: true, d: true },
+      ],
+    },
     dialogsPage: {
       messagesData: [
-        { id: 1, message: "First message about weather", usId: "i" },
+        { id: 1, message: "First message about weather", usId: 3 },
         { id: 2, message: "Second message about a girl", usId: 5 },
         { id: 3, message: "Third message about a food", usId: 6 },
         { id: 4, message: "Fourth message about a message", usId: 1 },
@@ -27,7 +29,9 @@ let store = {
         { id: 6, message: "What a nice day!", usId: 3 },
         { id: 7, message: "The weather is piece of sheet!", usId: 4 },
         { id: 8, message: "How are you?", usId: 1 },
-        { id: 9, message: "How many words in this message&", usId: 4 },
+        { id: 9, message: "How many words in this message?", usId: 4 },
+        { id: 10, message: "How many words in this message?", usId: 2 },
+        { id: 11, message: "How many words in this message?", usId: 3 },
       ],
       newMessageBody: "",
     },
