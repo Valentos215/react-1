@@ -22,15 +22,15 @@ const Dialogs = (props) => {
 
   return (
     <div className={s.dialogs}>
-      <div className={s.title}>Dialogs</div>
+      <div className={s.title}>Dialogues</div>
       <div className={s.wrapper}>
         <div className={s.dialogsArea}>{dialogsArray}</div>
         <div className={s.line}></div>
 
         <div className={s.messages}>
           <FriendMessage
-            user={props.store.getState().usersData.users[2]}
-            message={props.store.getState().dialogsPage.messagesData[7].message}
+            user={props.store.getState().usersData.users[0]}
+            message={props.store.getState().dialogsPage.messagesData[0].message}
           />
           {myMessages}
           <NewMessage store={props.store} />

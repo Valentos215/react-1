@@ -9,7 +9,7 @@ let initialState = {
   webSite: "",
   birthDay: new Date(),
   image: "",
-  wallData: [],
+  wallData: [{ id: 1, text: "", likes: 0, usId: 1 }],
   newPost: "",
 };
 
@@ -30,7 +30,7 @@ const profileReducer = (state = initialState, action) => {
         id: newId,
         text: state.newPost,
         likes: 0,
-        usId: randomUsId(),
+        usId: 1,
       };
       state.wallData.push(newPost);
       state.newPost = "";
