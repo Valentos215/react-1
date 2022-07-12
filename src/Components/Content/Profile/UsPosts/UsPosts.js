@@ -8,6 +8,7 @@ const UsPosts = (props) => {
       postText={post.text}
       likes={post.likes}
       user={props.users[post.usId - 1]}
+      key={post.id}
     />
   ));
 

@@ -1,14 +1,15 @@
 import {
   addMessageActionCreator,
   updateNewMessageActionCreator,
-} from "../../../../redux/dialogs-reducer";
-import NewMessage from "./NewMessage";
+} from "../../../redux/dialogs-reducer";
+import Dialogs from "./Dialogs";
 import { connect } from "react-redux";
 
 const mapStateToProps = (state) => {
   return {
     profileData: state.profileData,
-    newMessageBody: state.dialogsPage.newMessageBody,
+    dialogsPage: state.dialogsPage,
+    users: state.usersData.users,
   };
 };
 const mapDispatchToProps = (dispatch) => {
@@ -22,8 +23,6 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-const NewMessageContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(NewMessage);
-export default NewMessageContainer;
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
+
+export default DialogsContainer;

@@ -4,14 +4,14 @@ import NavItem from "./NavItem/NavItem";
 
 const Navbar = (props) => {
   const navArray = [
-    { title: "Profile", link: "/profile" },
-    { title: "Dialogs", link: "/dialogs" },
-    { title: "News", link: "/news" },
-    { title: "Music", link: "/music" },
-    { title: "Settings", link: "/settings" },
+    { id: 1, title: "Profile", link: "/profile" },
+    { id: 2, title: "Dialogs", link: "/dialogs" },
+    { id: 3, title: "News", link: "/news" },
+    { id: 4, title: "Music", link: "/music" },
+    { id: 5, title: "Settings", link: "/settings" },
   ];
   const navMenu = navArray.map((item) => (
-    <NavItem title={item.title} link={item.link} />
+    <NavItem title={item.title} link={item.link} key={item.id} />
   ));
 
   return (

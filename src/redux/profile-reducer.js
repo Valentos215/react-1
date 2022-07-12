@@ -15,15 +15,10 @@ let initialState = {
 
 const profileReducer = (state = initialState, action) => {
   switch (action.type) {
-    case UPDATE_NEW_POST_TEXT: {
-      let stateCopy = { ...state };
-      stateCopy.newPost = action.postMessage;
-      return stateCopy;
-    }
+    case UPDATE_NEW_POST_TEXT:
+      return { ...state, newPost: action.postMessage };
 
-    case ADD_POST: {
-      let stateCopy = { ...state };
-      stateCopy.wallData = [...state.wallData];
+    case ADD_POST:
       let newId = state.wallData.length + 1;
       // let randomUsId = () => {
       //   let random = Math.round((Math.random() / 2) * 10);
@@ -36,10 +31,11 @@ const profileReducer = (state = initialState, action) => {
         likes: 0,
         usId: 1,
       };
-      stateCopy.wallData.push(newPost);
-      stateCopy.newPost = "";
-      return stateCopy;
-    }
+      return {
+        ...state,
+        wallData: [...state.wallData, newPost],
+        newPost: "",
+      };
 
     default:
       return state;

@@ -2,13 +2,13 @@ import s from "./Dialogs.module.css";
 import MyMessage from "./MyMessage/MyMessage";
 import DialogItem from "./DialogItem/DialogItem";
 import FriendMessage from "./FriendMessage/FriendMessage";
-import NewMessageContainer from "./NewMessage/NewMessageContainer";
+import NewMessage from "./NewMessage/NewMessage";
 
 const Dialogs = (props) => {
   const dialogsArray = props.store
     .getState()
     .usersData.users.filter((us) => us.d)
-    .map((d) => <DialogItem user={d} />);
+    .map((d) => <DialogItem user={d} key={d.id} />);
 
   const myMessages = props.store
     .getState()
@@ -17,6 +17,7 @@ const Dialogs = (props) => {
       <MyMessage
         user={props.store.getState().profileData}
         message={m.message}
+        key={m.id}
       />
     ));
 
@@ -33,7 +34,12 @@ const Dialogs = (props) => {
             message={props.store.getState().dialogsPage.messagesData[0].message}
           />
           {myMessages}
-          <NewMessageContainer store={props.store} />
+          <NewMessage
+            messageChange={props.messageChange}
+            buttonClick={props.buttonClick}
+            profileData={props.profileData}
+            newMessageBody={props.dialogsPage.newMessageBody}
+          />
         </div>
       </div>
     </div>

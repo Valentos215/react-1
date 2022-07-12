@@ -6,7 +6,7 @@ const Friends = (props) => {
   const friends = props.store
     .getState()
     .usersData.users.slice(0, 3)
-    .map((f) => <User user={f} />);
+    .map((f) => <User user={f} key={f.id} />);
 
   return (
     <div className={s.wrapper}>
