@@ -1,15 +1,21 @@
+import image6 from "../Images/06.jpg";
+
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 
 let initialState = {
-  name: "",
-  sureName: "",
-  city: "",
-  education: "",
-  webSite: "",
-  birthDay: new Date(),
-  image: "",
-  wallData: [{ id: 1, text: "", likes: 0, usId: 1 }],
+  name: "Vale",
+  sureName: "Kharkov",
+  city: "Kiev",
+  education: "KPI",
+  webSite: "https://google.com",
+  birthDay: new Date(1992, 2, 18),
+  image: image6,
+  wallData: [
+    { id: 1, text: "Hey, why nobody love me?", likes: 10, usId: 5 },
+    { id: 2, text: "Happy message!", likes: 2, usId: 2 },
+    { id: 3, text: "Some message for a some day", likes: 0, usId: 2 },
+  ],
   newPost: "",
 };
 
