@@ -1,6 +1,7 @@
 .message {
   display: flex;
   position: relative;
+  flex: 0 0 auto;
   flex-direction: row;
   margin-bottom: 10px;
 }

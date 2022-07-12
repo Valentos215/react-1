@@ -11,11 +11,11 @@ const UsPosts = (props) => {
     />
   ));
 
-  const postChange = (e) => {
-    props.onPostChange(e.target.value);
+  const onPostChange = (e) => {
+    props.postChange(e.target.value);
   };
-  const buttonClick = () => {
-    props.onButtonClick();
+  const onButtonClick = () => {
+    props.buttonClick();
   };
 
   return (
@@ -24,13 +24,13 @@ const UsPosts = (props) => {
       <form className={s.form}>
         <p>
           <textarea
-            onChange={postChange}
+            onChange={onPostChange}
             value={props.newPostBody}
             placeholder="your news..."
             className={s.input}
           ></textarea>
         </p>
-        <div onClick={buttonClick} className={s.button}>
+        <div onClick={onButtonClick} className={s.button}>
           Send
         </div>
       </form>

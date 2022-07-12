@@ -1,4 +1,5 @@
 .profile {
+  flex: 1 1 auto;
 }
 .wide_image {
   position: relative;

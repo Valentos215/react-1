@@ -15,26 +15,31 @@ let initialState = {
 
 const profileReducer = (state = initialState, action) => {
   switch (action.type) {
-    case UPDATE_NEW_POST_TEXT:
-      state.newPost = action.postMessage;
-      return state;
+    case UPDATE_NEW_POST_TEXT: {
+      let stateCopy = { ...state };
+      stateCopy.newPost = action.postMessage;
+      return stateCopy;
+    }
 
-    case ADD_POST:
+    case ADD_POST: {
+      let stateCopy = { ...state };
+      stateCopy.wallData = [...state.wallData];
       let newId = state.wallData.length + 1;
-      let randomUsId = () => {
-        let random = Math.round((Math.random() / 2) * 10);
-        if (random === 0) return 6;
-        else return random;
-      };
+      // let randomUsId = () => {
+      //   let random = Math.round((Math.random() / 2) * 10);
+      //   if (random === 0) return 6;
+      //   else return random;
+      // };
       let newPost = {
         id: newId,
         text: state.newPost,
         likes: 0,
         usId: 1,
       };
-      state.wallData.push(newPost);
-      state.newPost = "";
-      return state;
+      stateCopy.wallData.push(newPost);
+      stateCopy.newPost = "";
+      return stateCopy;
+    }
 
     default:
       return state;
