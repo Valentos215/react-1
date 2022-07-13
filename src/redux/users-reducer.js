@@ -4,28 +4,115 @@ import image3 from "../Images/03.webp";
 import image4 from "../Images/04.webp";
 import image5 from "../Images/05.jpg";
 
-const ADD_USER = "ADD_USER";
+const FOLLOW = "FOLLOW";
+const UNFOLLOW = "UNFOLLOW";
+const SET_USERS = "SET_USERS";
 
 let initialState = {
   users: [
-    { id: 1, name: "Andru", image: image1, f: true, o: true, d: true },
-    { id: 2, name: "Ostin", image: image2, f: true, o: false, d: true },
-    { id: 3, name: "Mike", image: image3, f: true, o: true, d: true },
-    { id: 4, name: "Ivan", image: image4, f: true, o: true, d: false },
-    { id: 5, name: "Kolian", image: image5, f: true, bf: true, d: true },
-    { id: 6, name: "Vasilii", image: image1, f: false, o: true, d: true },
+    {
+      id: 1,
+      name: "Andru",
+      photos: { small: image1, large: image1 },
+      f: true,
+      o: true,
+      d: true,
+      status: "Like tennis",
+      country: "Spain",
+      city: "Madrid",
+    },
+    {
+      id: 2,
+      name: "Ostin",
+      photos: { small: image2, large: image2 },
+      f: true,
+      o: false,
+      d: true,
+      status: "Like football",
+      country: "USA",
+      city: "Boston",
+    },
+    {
+      id: 3,
+      name: "Mike",
+      photos: { small: image3, large: image3 },
+      f: true,
+      o: true,
+      d: true,
+      status: "Like drinks",
+      country: "Spain",
+      city: "Barca",
+    },
+    {
+      id: 4,
+      name: "Ivan",
+      photos: { small: image4, large: image4 },
+      f: true,
+      o: true,
+      d: false,
+      status: "Like meet",
+      country: "Belarus",
+      city: "Minsk",
+    },
+    {
+      id: 5,
+      name: "Kolian",
+      photos: { small: image5, large: image5 },
+      f: false,
+      o: true,
+      d: true,
+      status: "Like life",
+      country: "Ukraine",
+      city: "Kiev",
+    },
+    {
+      id: 6,
+      name: "Vasilii",
+      photos: { small: image1, large: image1 },
+      f: false,
+      o: true,
+      d: true,
+      status: "Like React",
+      country: "Ukraine",
+      city: "Dnepr",
+    },
   ],
+  friendsPage: [],
 };
 
 const usersReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_USER:
-      return state;
+    case FOLLOW:
+      return {
+        ...state,
+        users: state.users.map((u) => {
+          if (u.id === action.userId) {
+            return { ...u, f: true };
+          }
+          return u;
+        }),
+      };
+
+    case UNFOLLOW:
+      return {
+        ...state,
+        users: state.users.map((u) => {
+          if (u.id === action.userId) {
+            return { ...u, f: false };
+          }
+          return u;
+        }),
+      };
+
+    case SET_USERS:
+      return { ...state, users: [...state.users, ...action.users] };
     default:
       return state;
   }
 };
 
-export const addUserActionCreator = () => ({ type: ADD_USER });
+export const followAC = (userId) => ({ type: FOLLOW, userId });
+export const unfollowAC = (userId) => ({ type: UNFOLLOW, userId });
+export const setUsersAC = (users) => ({ type: SET_USERS, users });
 
 export default usersReducer;

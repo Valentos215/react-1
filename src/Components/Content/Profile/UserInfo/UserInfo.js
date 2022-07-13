@@ -1,4 +1,5 @@
 import s from "./UserInfo.module.css";
+import noPhoto from "../../../../Images/08.png";
 
 const UserInfo = (props) => {
   const month = props.user.birthDay.toLocaleString("en-US", { month: "long" });
@@ -7,7 +8,12 @@ const UserInfo = (props) => {
   return (
     <div className={s.user}>
       <div className={s.image}>
-        <img alt="HZ" src={props.user.image}></img>
+        <img
+          alt="HZ"
+          src={
+            props.user.photos.large !== null ? props.user.photos.large : noPhoto
+          }
+        ></img>
       </div>
       <div className={s.description}>
         <div className={s.name}>

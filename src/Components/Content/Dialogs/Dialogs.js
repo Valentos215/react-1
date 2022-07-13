@@ -5,20 +5,14 @@ import FriendMessage from "./FriendMessage/FriendMessage";
 import NewMessage from "./NewMessage/NewMessage";
 
 const Dialogs = (props) => {
-  const dialogsArray = props.store
-    .getState()
-    .usersData.users.filter((us) => us.d)
+  const dialogsArray = props.users
+    .filter((us) => us.d)
     .map((d) => <DialogItem user={d} key={d.id} />);
 
-  const myMessages = props.store
-    .getState()
-    .dialogsPage.messagesData.filter((us) => us.usId === "i")
+  const myMessages = props.dialogsPage.messagesData
+    .filter((us) => us.usId === "i")
     .map((m) => (
-      <MyMessage
-        user={props.store.getState().profileData}
-        message={m.message}
-        key={m.id}
-      />
+      <MyMessage user={props.profileData} message={m.message} key={m.id} />
     ));
 
   return (
@@ -30,8 +24,8 @@ const Dialogs = (props) => {
 
         <div className={s.messages}>
           <FriendMessage
-            user={props.store.getState().usersData.users[0]}
-            message={props.store.getState().dialogsPage.messagesData[0].message}
+            user={props.users[0]}
+            message={props.dialogsPage.messagesData[0].message}
           />
           {myMessages}
           <NewMessage

@@ -1,0 +1,16 @@
+.wrapper {
+  position: relative;
+  flex: 0 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+.title {
+  position: relative;
+  font-size: 30px;
+  margin: 20px 0 50px 30px;
+}
+.usersArea {
+  margin-left: 50px;
+  display: flex;
+  flex-direction: column;
+}

@@ -1,5 +1,6 @@
 import s from "./UserImage.module.css";
 import { NavLink } from "react-router-dom";
+import noPhoto from "../../../Images/08.png";
 
 const UserImage = (props) => {
   const link = (user) => {
@@ -9,7 +10,12 @@ const UserImage = (props) => {
   return (
     <NavLink to={link(props.user)}>
       <div className={s.image}>
-        <img alt="HZ" src={props.user.image}></img>
+        <img
+          alt="HZ"
+          src={
+            props.user.photos.small !== null ? props.user.photos.small : noPhoto
+          }
+        ></img>
       </div>
     </NavLink>
   );

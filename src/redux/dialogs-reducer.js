@@ -5,8 +5,7 @@ let initialState = {
   messagesData: [
     {
       id: 1,
-      message:
-        "First message about weather, First message about weather, First message about weather",
+      message: "First message about weather",
       usId: 3,
     },
     { id: 2, message: "Second message about a girl", usId: 5 },

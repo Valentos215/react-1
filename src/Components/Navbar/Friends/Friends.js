@@ -11,7 +11,7 @@ const Friends = (props) => {
   return (
     <div className={s.wrapper}>
       <div className={s.title}>
-        <NavLink to="/friends">Friends</NavLink>
+        <NavLink to="/users">Users</NavLink>
       </div>
       <div className={s.friendsArea}>{friends}</div>
     </div>

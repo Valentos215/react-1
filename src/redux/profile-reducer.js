@@ -10,7 +10,7 @@ let initialState = {
   education: "KPI",
   webSite: "https://google.com",
   birthDay: new Date(1992, 2, 18),
-  image: image6,
+  photos: { small: image6, large: image6 },
   wallData: [
     { id: 1, text: "Hey, why nobody love me?", likes: 10, usId: 5 },
     { id: 2, text: "Happy message!", likes: 2, usId: 2 },
