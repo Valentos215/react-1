@@ -10,9 +10,7 @@ const UserInfo = (props) => {
       <div className={s.image}>
         <img
           alt="HZ"
-          src={
-            props.user.photos.large !== null ? props.user.photos.large : noPhoto
-          }
+          src={props.user.photos.large ? props.user.photos.large : noPhoto}
         ></img>
       </div>
       <div className={s.description}>

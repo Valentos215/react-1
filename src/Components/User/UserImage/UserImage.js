@@ -12,9 +12,7 @@ const UserImage = (props) => {
       <div className={s.image}>
         <img
           alt="HZ"
-          src={
-            props.user.photos.small !== null ? props.user.photos.small : noPhoto
-          }
+          src={props.user.photos.small ? props.user.photos.small : noPhoto}
         ></img>
       </div>
     </NavLink>
