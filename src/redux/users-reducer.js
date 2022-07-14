@@ -4,6 +4,8 @@ import image3 from "../Images/03.webp";
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
 const SET_USERS = "SET_USERS";
+const SET_PAGE = "SET_PAGE";
+const SET_TOTAL_COUNT = "SET_TOTAL_COUNT";
 
 let initialState = {
   users: [
@@ -38,6 +40,9 @@ let initialState = {
       location: { country: "Spain", city: "Madrid" },
     },
   ],
+  pageSize: 6,
+  totalUsersCount: 0,
+  currentPage: 1,
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -65,7 +70,14 @@ const usersReducer = (state = initialState, action) => {
       };
 
     case SET_USERS:
-      return { ...state, users: [...initialState.users, ...action.users] };
+      return { ...state, users: [...action.users] };
+
+    case SET_PAGE:
+      return { ...state, currentPage: action.page };
+
+    case SET_TOTAL_COUNT:
+      return { ...state, totalUsersCount: action.totalCount };
+
     default:
       return state;
   }
@@ -74,5 +86,10 @@ const usersReducer = (state = initialState, action) => {
 export const followAC = (userId) => ({ type: FOLLOW, userId });
 export const unfollowAC = (userId) => ({ type: UNFOLLOW, userId });
 export const setUsersAC = (users) => ({ type: SET_USERS, users });
+export const setPageAC = (page) => ({ type: SET_PAGE, page });
+export const setTotalCountAC = (totalCount) => ({
+  type: SET_TOTAL_COUNT,
+  totalCount,
+});
 
 export default usersReducer;

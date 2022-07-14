@@ -4,16 +4,15 @@ import UserItem from "./UserItem/UserItem";
 import s from "./Users.module.css";
 
 class Users extends React.Component {
-  getUsers = () => {
+  componentDidMount() {
     axios
-      .get("https://social-network.samuraijs.com/api/1.0/users")
+      .get(
+        `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`
+      )
       .then((response) => {
         this.props.setUsers(response.data.items);
+        this.props.setTotalCount(response.data.totalCount);
       });
-  };
-  componentDidMount() {
-    this.getUsers();
-    this.props.users.sort((a, b) => b.f - a.f);
   }
   componentDidUpdate() {
     console.log("Updated");
@@ -21,14 +20,42 @@ class Users extends React.Component {
   componentWillUnmount() {
     console.log("Unmounted");
   }
+
+  clickOnPageNum(page) {
+    this.props.setPage(page);
+    console.log(page);
+
+    axios
+      .get(
+        `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`
+      )
+      .then((response) => {
+        this.props.setUsers(response.data.items);
+      });
+  }
+
   render() {
+    let pagesCount = Math.ceil(
+      this.props.totalUsersCount / this.props.pageSize
+    );
+    let pages = [];
+    for (let i = 1; i <= pagesCount && i <= 30; i++) {
+      pages.push(i);
+    }
+
     return (
       <div className={s.wrapper}>
         <div className={s.title}>Users</div>
         <div className={s.nav}>
-          <span className={s.pNum}>1</span>
-          <span className={s.pNum}>2</span>
-          <span className={s.pNum}>3</span>
+          {pages.map((p) => (
+            <span
+              key={p}
+              className={this.props.currentPage === p ? s.selectedPage : null}
+              onClick={() => this.clickOnPageNum(p)}
+            >
+              {p}
+            </span>
+          ))}
         </div>
         <div className={s.usersArea}>
           <div>
