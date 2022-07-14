@@ -6,15 +6,15 @@ const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 let initialState = {
   name: "Vale",
   sureName: "Kharkov",
-  city: "Kiev",
+  location: { country: "Ukraine", city: "Kiev" },
   education: "KPI",
   webSite: "https://google.com",
   birthDay: new Date(1992, 2, 18),
   photos: { small: image6, large: image6 },
   wallData: [
-    { id: 1, text: "Hey, why nobody love me?", likes: 10, usId: 5 },
+    { id: 1, text: "Hey, why nobody love me?", likes: 10, usId: 1 },
     { id: 2, text: "Happy message!", likes: 2, usId: 2 },
-    { id: 3, text: "Some message for a some day", likes: 0, usId: 2 },
+    { id: 3, text: "Some message for a some day", likes: 0, usId: 3 },
   ],
   newPost: "",
 };

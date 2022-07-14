@@ -25,8 +25,16 @@ const UserItem = (props) => {
           <div className={s.status}>{props.user.status}</div>
         </div>
         <div className={s.right}>
-          <div className={s.country}>{props.user.country},</div>
-          <div className={s.city}>{props.user.city}</div>
+          <div className={s.country}>
+            {props.user.location !== undefined
+              ? props.user.location.country + ","
+              : null}
+          </div>
+          <div className={s.city}>
+            {props.user.location !== undefined
+              ? props.user.location.city
+              : null}
+          </div>
         </div>
       </div>
     </div>

@@ -23,7 +23,7 @@ const UserInfo = (props) => {
               Date of Birth: {day} {month} {year}
             </li>
             <li>
-              City: <a href="https://google.com">{props.user.city}</a>
+              City: <a href="https://google.com">{props.user.location.city}</a>
             </li>
             <li>
               Education: <a href="https://google.com">{props.user.education}</a>

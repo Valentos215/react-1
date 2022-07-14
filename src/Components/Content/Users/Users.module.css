@@ -7,7 +7,17 @@
 .title {
   position: relative;
   font-size: 30px;
-  margin: 20px 0 50px 30px;
+  margin: 20px 0 20px 30px;
+}
+.nav {
+  position: relative;
+  margin-bottom: 30px;
+  margin-left: 30px;
+}
+.pNum {
+  cursor: pointer;
+  margin-left: 10px;
+  font-size: 18px;
 }
 .usersArea {
   margin-left: 50px;

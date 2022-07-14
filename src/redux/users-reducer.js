@@ -1,9 +1,6 @@
 import image1 from "../Images/01.ppm";
 import image2 from "../Images/02.webp";
 import image3 from "../Images/03.webp";
-import image4 from "../Images/04.webp";
-import image5 from "../Images/05.jpg";
-
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
 const SET_USERS = "SET_USERS";
@@ -13,71 +10,34 @@ let initialState = {
     {
       id: 1,
       name: "Andru",
-      photos: { small: image1, large: image1 },
-      f: false,
+      f: true,
       o: true,
       d: true,
-      status: "Like tennis",
-      country: "Spain",
-      city: "Madrid",
+      status: "Looking for a new job",
+      photos: { small: image1, large: image1 },
+      location: { country: "Itali", city: "Milan" },
     },
     {
       id: 2,
       name: "Ostin",
-      photos: { small: image2, large: image2 },
       f: true,
-      o: false,
+      o: true,
       d: true,
-      status: "Like football",
-      country: "USA",
-      city: "Boston",
+      status: "Learning React",
+      photos: { small: image2, large: image2 },
+      location: { country: "USA", city: "Boston" },
     },
     {
       id: 3,
       name: "Mike",
+      f: true,
+      o: true,
+      d: true,
+      status: "Life is good",
       photos: { small: image3, large: image3 },
-      f: true,
-      o: true,
-      d: true,
-      status: "Like drinks",
-      country: "Spain",
-      city: "Barca",
-    },
-    {
-      id: 4,
-      name: "Ivan",
-      photos: { small: image4, large: image4 },
-      f: true,
-      o: true,
-      d: false,
-      status: "Like meet",
-      country: "Belarus",
-      city: "Minsk",
-    },
-    {
-      id: 5,
-      name: "Kolian",
-      photos: { small: image5, large: image5 },
-      f: true,
-      o: true,
-      d: true,
-      status: "Like life",
-      country: "Ukraine",
-      city: "Kiev",
-    },
-    {
-      id: 6,
-      name: "Vasilii",
-      photos: { small: image1, large: image1 },
-      f: false,
-      o: true,
-      d: true,
-      status: "Like React",
-      country: "Ukraine",
-      city: "Dnepr",
+      location: { country: "Spain", city: "Madrid" },
     },
   ],
-  friendsPage: [],
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -105,7 +65,7 @@ const usersReducer = (state = initialState, action) => {
       };
 
     case SET_USERS:
-      return { ...state, users: [...state.users, ...action.users] };
+      return { ...state, users: [...initialState.users, ...action.users] };
     default:
       return state;
   }

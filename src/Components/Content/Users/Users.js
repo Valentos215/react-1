@@ -4,12 +4,6 @@ import UserItem from "./UserItem/UserItem";
 import s from "./Users.module.css";
 
 class Users extends React.Component {
-  constructor(props) {
-    super(props);
-    this.getUsers();
-    this.props.users.sort((a, b) => b.f - a.f);
-  }
-
   getUsers = () => {
     axios
       .get("https://social-network.samuraijs.com/api/1.0/users")
@@ -17,10 +11,25 @@ class Users extends React.Component {
         this.props.setUsers(response.data.items);
       });
   };
+  componentDidMount() {
+    this.getUsers();
+    this.props.users.sort((a, b) => b.f - a.f);
+  }
+  componentDidUpdate() {
+    console.log("Updated");
+  }
+  componentWillUnmount() {
+    console.log("Unmounted");
+  }
   render() {
     return (
       <div className={s.wrapper}>
         <div className={s.title}>Users</div>
+        <div className={s.nav}>
+          <span className={s.pNum}>1</span>
+          <span className={s.pNum}>2</span>
+          <span className={s.pNum}>3</span>
+        </div>
         <div className={s.usersArea}>
           <div>
             {this.props.users.map((u) => (
