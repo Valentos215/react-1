@@ -13,10 +13,10 @@ const UsPosts = (props) => {
   ));
 
   const onPostChange = (e) => {
-    props.postChange(e.target.value);
+    props.changePost(e.target.value);
   };
   const onButtonClick = () => {
-    props.buttonClick();
+    props.addPost();
   };
 
   return (

@@ -1,7 +1,7 @@
 import image6 from "../Images/06.jpg";
 
 const ADD_POST = "ADD-POST";
-const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+const CHANGE_POST = "CHANGE_POST";
 
 let initialState = {
   name: "Vale",
@@ -21,7 +21,7 @@ let initialState = {
 
 const profileReducer = (state = initialState, action) => {
   switch (action.type) {
-    case UPDATE_NEW_POST_TEXT:
+    case CHANGE_POST:
       return { ...state, newPost: action.postMessage };
 
     case ADD_POST:
@@ -48,9 +48,9 @@ const profileReducer = (state = initialState, action) => {
   }
 };
 
-export const addPostActionCreator = () => ({ type: ADD_POST });
-export const updateNewPostActionCreator = (text) => ({
-  type: UPDATE_NEW_POST_TEXT,
+export const addPost = () => ({ type: ADD_POST });
+export const changePost = (text) => ({
+  type: CHANGE_POST,
   postMessage: text,
 });
 

@@ -1,0 +1,10 @@
+.preloader {
+  position: relative;
+  align-self: center;
+  width: 50%;
+  display: flex;
+  align-items: center;
+}
+.preloader img {
+  position: relative;
+}

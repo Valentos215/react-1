@@ -29,8 +29,8 @@ const Dialogs = (props) => {
           />
           {myMessages}
           <NewMessage
-            messageChange={props.messageChange}
-            buttonClick={props.buttonClick}
+            changeMessage={props.changeMessage}
+            sendMessage={props.sendMessage}
             profileData={props.profileData}
             newMessageBody={props.dialogsPage.newMessageBody}
           />

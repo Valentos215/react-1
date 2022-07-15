@@ -4,10 +4,10 @@ import User from "../../../User/User";
 
 const NewMessage = (props) => {
   let onMessageChange = (e) => {
-    props.messageChange(e.target.value);
+    props.changeMessage(e.target.value);
   };
   let onButtonClick = () => {
-    props.buttonClick();
+    props.sendMessage();
   };
 
   return (

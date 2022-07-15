@@ -1,6 +1,7 @@
 import React from "react";
 import UserItem from "./UserItem/UserItem";
 import s from "./Users.module.css";
+import Preloader from "../../../Components/Preloader/Preloader";
 
 const Users = (props) => {
   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -8,6 +9,15 @@ const Users = (props) => {
   for (let i = 1; i <= pagesCount && i <= 30; i++) {
     pages.push(i);
   }
+
+  const userList = props.users.map((u) => (
+    <UserItem
+      user={u}
+      key={u.id}
+      follow={props.follow}
+      unfollow={props.unfollow}
+    />
+  ));
 
   return (
     <div className={s.wrapper}>
@@ -24,16 +34,7 @@ const Users = (props) => {
         ))}
       </div>
       <div className={s.usersArea}>
-        <div>
-          {props.users.map((u) => (
-            <UserItem
-              user={u}
-              key={u.id}
-              follow={props.follow}
-              unfollow={props.unfollow}
-            />
-          ))}
-        </div>
+        {props.isFetching ? <Preloader /> : userList}
       </div>
     </div>
   );
