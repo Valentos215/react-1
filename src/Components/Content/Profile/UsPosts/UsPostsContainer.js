@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 const mapStateToProps = (state) => {
   return {
-    wallData: state.profileData.wallData,
+    wallData: state.profileData.myProfile.wallData,
     newPostBody: state.profileData.newPost,
     users: state.usersData.users,
   };

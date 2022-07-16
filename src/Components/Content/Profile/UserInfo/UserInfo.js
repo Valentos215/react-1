@@ -2,9 +2,16 @@ import s from "./UserInfo.module.css";
 import noPhoto from "../../../../Images/08.png";
 
 const UserInfo = (props) => {
-  const month = props.user.birthDay.toLocaleString("en-US", { month: "long" });
-  const day = props.user.birthDay.toLocaleString("en-US", { day: "2-digit" });
-  const year = props.user.birthDay.getFullYear();
+  let month = null;
+  let day = null;
+  let year = null;
+  if (props.user) {
+    if (props.user.birthDay) {
+      month = props.user.birthDay.toLocaleString("en-US", { month: "long" });
+      day = props.user.birthDay.toLocaleString("en-US", { day: "2-digit" });
+      year = props.user.birthDay.getFullYear();
+    }
+  }
   return (
     <div className={s.user}>
       <div className={s.image}>
@@ -15,7 +22,7 @@ const UserInfo = (props) => {
       </div>
       <div className={s.description}>
         <div className={s.name}>
-          {props.user.name} {props.user.sureName[0]}.
+          {props.user.fullName ? props.user.fullName : null}
         </div>
         <div className={s.data}>
           <ul>
@@ -23,13 +30,22 @@ const UserInfo = (props) => {
               Date of Birth: {day} {month} {year}
             </li>
             <li>
-              City: <a href="https://google.com">{props.user.location.city}</a>
+              City:{" "}
+              <a href="https://google.com">
+                {props.user.location ? props.user.location.city : null}
+              </a>
             </li>
             <li>
-              Education: <a href="https://google.com">{props.user.education}</a>
+              About Me:{" "}
+              <a href="https://google.com">
+                {props.user.aboutMe ? props.user.aboutMe : null}
+              </a>
             </li>
             <li>
-              Web Site: <a href={props.user.webSite}>{props.user.webSite}</a>
+              Web Site:{" "}
+              <a href={props.user.webSite}>
+                {props.user.webSite ? props.user.webSite : null}
+              </a>
             </li>
           </ul>
         </div>

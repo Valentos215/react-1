@@ -1,17 +1,16 @@
 import UserInfo from "./UserInfo/UserInfo";
 import s from "./Profile.module.css";
 import UsPostsContainer from "./UsPosts/UsPostsContainer";
+import WideImage from "./WideImage/WideImage";
+import Preloader from "../../Preloader/Preloader";
 
 const Profile = (props) => {
+  if (!props.profileData.profile) return <Preloader />;
+
   return (
     <div className={s.profile}>
-      <div className={s.wide_image}>
-        <img
-          alt="HZ"
-          src="https://image.shutterstock.com/image-photo/wide-panorama-beautiful-autumn-field-260nw-751127782.jpg"
-        ></img>
-      </div>
-      <UserInfo user={props.store.getState().profileData} />
+      <WideImage />
+      <UserInfo user={props.profileData.profile} />
       <UsPostsContainer store={props.store} />
     </div>
   );

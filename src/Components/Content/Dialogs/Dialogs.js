@@ -12,7 +12,11 @@ const Dialogs = (props) => {
   const myMessages = props.dialogsPage.messagesData
     .filter((us) => us.usId === "i")
     .map((m) => (
-      <MyMessage user={props.profileData} message={m.message} key={m.id} />
+      <MyMessage
+        user={props.profileData.myProfile}
+        message={m.message}
+        key={m.id}
+      />
     ));
 
   return (

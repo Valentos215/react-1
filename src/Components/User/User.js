@@ -5,7 +5,7 @@ const User = (props) => {
   return (
     <div className={s.user}>
       <UserImage user={props.user} />
-      <div className={s.name}>{props.user.name}</div>
+      <div className={s.name}>{props.user.name.slice(0, 10)}</div>
     </div>
   );
 };

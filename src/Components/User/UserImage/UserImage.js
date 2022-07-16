@@ -4,7 +4,7 @@ import noPhoto from "../../../Images/08.png";
 
 const UserImage = (props) => {
   const link = (user) => {
-    if (user.id) return "/users/user" + user.id;
+    if (user.id) return "/profile/" + user.id;
     else return "/profile";
   };
   return (

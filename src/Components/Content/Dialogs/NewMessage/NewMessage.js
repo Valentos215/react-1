@@ -12,7 +12,7 @@ const NewMessage = (props) => {
 
   return (
     <div className={s.wrapper}>
-      <User user={props.profileData} />
+      <User user={props.profileData.myProfile} />
       <form className={s.form}>
         <input
           onChange={onMessageChange}
