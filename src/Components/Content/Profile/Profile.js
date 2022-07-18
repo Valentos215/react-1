@@ -7,13 +7,15 @@ import Preloader from "../../Preloader/Preloader";
 const Profile = (props) => {
   if (!props.profileData.profile) return <Preloader />;
 
-  return (
-    <div className={s.profile}>
-      <WideImage />
-      <UserInfo user={props.profileData.profile} />
-      <UsPostsContainer store={props.store} />
-    </div>
-  );
+  if (props.isFetching) return <Preloader />;
+  else
+    return (
+      <div className={s.profile}>
+        <WideImage />
+        <UserInfo user={props.profileData.profile} />
+        <UsPostsContainer store={props.store} />
+      </div>
+    );
 };
 
 export default Profile;
