@@ -1,15 +1,37 @@
+import axios from "axios";
 import UserImage from "../../../User/UserImage/UserImage";
 import s from "./UserItem.module.css";
 
 const UserItem = (props) => {
   let onButtonClick = () => {
-    if (props.user.f) {
-      props.unfollow(props.user.id);
+    if (props.user.followed) {
+      axios
+        .delete(
+          `https://social-network.samuraijs.com/api/1.0/follow/${props.user.id}`,
+          {
+            withCredentials: true,
+            headers: { "API-KEY": " 4bef36b2-4ada-472f-9051-da2cddd347fa" },
+          }
+        )
+        .then((response) => {
+          if (response.data.resultCode === 0) props.unfollow(props.user.id);
+        });
     } else {
-      props.follow(props.user.id);
+      axios
+        .post(
+          `https://social-network.samuraijs.com/api/1.0/follow/${props.user.id}`,
+          {},
+          {
+            withCredentials: true,
+            headers: { "API-KEY": " 4bef36b2-4ada-472f-9051-da2cddd347fa" },
+          }
+        )
+        .then((response) => {
+          if (response.data.resultCode === 0) props.follow(props.user.id);
+        });
     }
   };
-  let button = () => (props.user.f ? "Unfollow" : "Follow");
+  let button = () => (props.user.followed ? "Unfollow" : "Follow");
 
   return (
     <div className={s.wrapper}>

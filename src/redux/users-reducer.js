@@ -13,7 +13,7 @@ let initialState = {
     {
       id: 1,
       name: "Andru",
-      f: true,
+      followed: true,
       o: true,
       d: true,
       status: "Looking for a new job",
@@ -23,7 +23,7 @@ let initialState = {
     {
       id: 2,
       name: "Ostin",
-      f: true,
+      followed: true,
       o: true,
       d: true,
       status: "Learning React",
@@ -33,7 +33,7 @@ let initialState = {
     {
       id: 3,
       name: "Mike",
-      f: true,
+      followed: true,
       o: true,
       d: true,
       status: "Life is good",
@@ -54,7 +54,7 @@ const usersReducer = (state = initialState, action) => {
         ...state,
         users: state.users.map((u) => {
           if (u.id === action.userId) {
-            return { ...u, f: true };
+            return { ...u, followed: true };
           }
           return u;
         }),
@@ -65,7 +65,7 @@ const usersReducer = (state = initialState, action) => {
         ...state,
         users: state.users.map((u) => {
           if (u.id === action.userId) {
-            return { ...u, f: false };
+            return { ...u, followed: false };
           }
           return u;
         }),

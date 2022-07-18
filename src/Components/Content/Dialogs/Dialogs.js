@@ -6,7 +6,7 @@ import NewMessage from "./NewMessage/NewMessage";
 
 const Dialogs = (props) => {
   const dialogsArray = props.users
-    .filter((us) => us.d)
+    .slice(0, 10)
     .map((d) => <DialogItem user={d} key={d.id} />);
 
   const myMessages = props.dialogsPage.messagesData

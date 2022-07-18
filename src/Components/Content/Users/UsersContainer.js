@@ -26,19 +26,14 @@ class UsersAPI extends React.Component {
     this.props.toggleFatching(true);
     axios
       .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`
+        `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,
+        { withCredentials: true }
       )
       .then((response) => {
         this.props.toggleFatching(false);
         this.props.setUsers(response.data.items);
         this.props.setTotalCount(response.data.totalCount);
       });
-  }
-  componentDidUpdate() {
-    console.log("Updated");
-  }
-  componentWillUnmount() {
-    console.log("Unmounted");
   }
 
   clickOnPageNum = (page) => {
@@ -47,7 +42,8 @@ class UsersAPI extends React.Component {
 
     axios
       .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`
+        `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`,
+        { withCredentials: true }
       )
       .then((response) => {
         this.props.toggleFatching(false);
