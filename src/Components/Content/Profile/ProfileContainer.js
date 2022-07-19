@@ -1,10 +1,10 @@
 import React from "react";
 import Profile from "./Profile";
-import axios from "axios";
 import { connect } from "react-redux";
 import { setUserProfile } from "../../../redux/profile-reducer";
 import { toggleFatching } from "../../../redux/users-reducer";
 import { withRouter } from "react-router-dom";
+import { profileAPI } from "../../../api/api";
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
@@ -15,14 +15,10 @@ class ProfileContainer extends React.Component {
       this.props.setUserProfile(this.props.profileData.myProfile);
       this.props.toggleFatching(false);
     } else
-      axios
-        .get(
-          `https://social-network.samuraijs.com/api/1.0/profile/${profileId}`
-        )
-        .then((response) => {
-          this.props.toggleFatching(false);
-          this.props.setUserProfile(response.data);
-        });
+      profileAPI.getUserProfile(profileId).then((data) => {
+        this.props.toggleFatching(false);
+        this.props.setUserProfile(data);
+      });
   }
 
   render() {

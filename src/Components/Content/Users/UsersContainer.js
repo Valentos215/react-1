@@ -7,9 +7,9 @@ import {
   toggleFatching,
   unfollow,
 } from "../../../redux/users-reducer";
-import axios from "axios";
 import React from "react";
 import Users from "./Users";
+import { usersAPI } from "../../../api/api";
 
 const mapStateToProps = (state) => {
   return {
@@ -24,15 +24,13 @@ const mapStateToProps = (state) => {
 class UsersAPI extends React.Component {
   componentDidMount() {
     this.props.toggleFatching(true);
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,
-        { withCredentials: true }
-      )
-      .then((response) => {
+
+    usersAPI
+      .getUsers(this.props.currentPage, this.props.pageSize)
+      .then((data) => {
         this.props.toggleFatching(false);
-        this.props.setUsers(response.data.items);
-        this.props.setTotalCount(response.data.totalCount);
+        this.props.setUsers(data.items);
+        this.props.setTotalCount(data.totalCount);
       });
   }
 
@@ -40,15 +38,10 @@ class UsersAPI extends React.Component {
     this.props.toggleFatching(true);
     this.props.setPage(page);
 
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`,
-        { withCredentials: true }
-      )
-      .then((response) => {
-        this.props.toggleFatching(false);
-        this.props.setUsers(response.data.items);
-      });
+    usersAPI.getUsers(page, this.props.pageSize).then((data) => {
+      this.props.toggleFatching(false);
+      this.props.setUsers(data.items);
+    });
   };
 
   render() {
