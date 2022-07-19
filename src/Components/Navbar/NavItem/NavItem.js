@@ -4,10 +4,7 @@ import s from "./NavItem.module.css";
 const NavItem = (props) => {
   return (
     <div className={s.item}>
-      <NavLink
-        to={props.link}
-        className={({ isActive }) => (isActive ? s.activeLink : undefined)}
-      >
+      <NavLink to={props.link} activeClassName={s.activeLink}>
         {props.title}
       </NavLink>
     </div>

@@ -8,8 +8,8 @@ const DialogItem = (props) => {
       <UserImage user={props.user} />
       <div className={s.dialog}>
         <NavLink
-          to={"/dialogs/user" + props.user.id}
-          className={({ isActive }) => (isActive ? s.activeLink : undefined)}
+          to={"/dialogs/" + props.user.id}
+          activeClassName={s.activeLink}
         >
           {props.user.name}
         </NavLink>
