@@ -7,6 +7,7 @@ const SET_USERS = "SET_USERS";
 const SET_PAGE = "SET_PAGE";
 const SET_TOTAL_COUNT = "SET_TOTAL_COUNT";
 const TOGGLE_FATCHING = "TOGGLE_FATCHING";
+const TOGGLE_FOLLOWING_PROGRESS = "TOGGLE_FOLLOWING_PROGRESS";
 
 let initialState = {
   users: [
@@ -45,6 +46,7 @@ let initialState = {
   totalUsersCount: 0,
   currentPage: 1,
   isFetching: false,
+  followingInProgress: false,
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -83,6 +85,9 @@ const usersReducer = (state = initialState, action) => {
     case TOGGLE_FATCHING:
       return { ...state, isFetching: action.isFatching };
 
+    case TOGGLE_FOLLOWING_PROGRESS:
+      return { ...state, followingInProgress: action.isFatching };
+
     default:
       return state;
   }
@@ -98,6 +103,10 @@ export const setTotalCount = (totalCount) => ({
 });
 export const toggleFatching = (isFatching) => ({
   type: TOGGLE_FATCHING,
+  isFatching,
+});
+export const toggleFollowingProgress = (isFatching) => ({
+  type: TOGGLE_FOLLOWING_PROGRESS,
   isFatching,
 });
 

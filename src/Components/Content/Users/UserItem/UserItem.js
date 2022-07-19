@@ -3,24 +3,37 @@ import UserImage from "../../../User/UserImage/UserImage";
 import s from "./UserItem.module.css";
 
 const UserItem = (props) => {
-  let onButtonClick = () => {
-    if (props.user.followed) {
-      usersAPI.unfollow(props.user.id).then((data) => {
-        if (data.resultCode === 0) props.unfollow(props.user.id);
-      });
-    } else {
-      usersAPI.follow(props.user.id).then((data) => {
-        if (data.resultCode === 0) props.follow(props.user.id);
-      });
+  let button = () => (props.user.followed ? "Unfollow" : "Follow");
+
+  const onButtonClick = () => {
+    if (props.followingInProgress !== props.user.id) {
+      props.toggleFollowingProgress(props.user.id);
+      if (props.user.followed) {
+        usersAPI.unfollow(props.user.id).then((data) => {
+          if (data.resultCode === 0) props.unfollow(props.user.id);
+          props.toggleFollowingProgress(false);
+        });
+      } else {
+        usersAPI.follow(props.user.id).then((data) => {
+          if (data.resultCode === 0) props.follow(props.user.id);
+          props.toggleFollowingProgress(false);
+        });
+      }
     }
   };
-  let button = () => (props.user.followed ? "Unfollow" : "Follow");
 
   return (
     <div className={s.wrapper}>
       <div className={s.user}>
         <UserImage user={props.user} />
-        <div className={s.butoon} onClick={onButtonClick}>
+        <div
+          className={
+            props.followingInProgress === props.user.id
+              ? s.buttonProcessed
+              : s.button
+          }
+          onClick={onButtonClick}
+        >
           {button()}
         </div>
       </div>
