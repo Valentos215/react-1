@@ -14,10 +14,8 @@ const Users = (props) => {
     <UserItem
       user={u}
       key={u.id}
-      toggleFollowingProgress={props.toggleFollowingProgress}
-      follow={props.follow}
-      unfollow={props.unfollow}
       followingInProgress={props.followingInProgress}
+      followClick={props.followClick}
     />
   ));
 

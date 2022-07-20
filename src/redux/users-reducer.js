@@ -1,3 +1,4 @@
+import { usersAPI } from "../api/api";
 import image1 from "../Images/01.ppm";
 import image2 from "../Images/02.webp";
 import image3 from "../Images/03.webp";
@@ -109,5 +110,34 @@ export const toggleFollowingProgress = (isFatching) => ({
   type: TOGGLE_FOLLOWING_PROGRESS,
   isFatching,
 });
+
+export const getUsers = (currentPage, pageSize, changePage) => {
+  return (dispatch) => {
+    dispatch(toggleFatching(true));
+    dispatch(setPage(changePage));
+    usersAPI.getUsers(currentPage, pageSize).then((data) => {
+      dispatch(toggleFatching(false));
+      dispatch(setUsers(data.items));
+      dispatch(setTotalCount(data.totalCount));
+    });
+  };
+};
+
+export const followClick = (id, followed) => {
+  return (dispatch) => {
+    dispatch(toggleFollowingProgress(id));
+    if (followed) {
+      usersAPI.unfollow(id).then((data) => {
+        if (data.resultCode === 0) dispatch(unfollow(id));
+        dispatch(toggleFollowingProgress(false));
+      });
+    } else {
+      usersAPI.follow(id).then((data) => {
+        if (data.resultCode === 0) dispatch(follow(id));
+        dispatch(toggleFollowingProgress(false));
+      });
+    }
+  };
+};
 
 export default usersReducer;

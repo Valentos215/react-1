@@ -1,37 +1,14 @@
 import { connect } from "react-redux";
-import {
-  follow,
-  unfollow,
-  setPage,
-  setTotalCount,
-  setUsers,
-  toggleFatching,
-  toggleFollowingProgress,
-} from "../../../redux/users-reducer";
+import { getUsers, followClick } from "../../../redux/users-reducer";
 import React from "react";
 import Users from "./Users";
-import { usersAPI } from "../../../api/api";
-class UsersAPI extends React.Component {
+class UsersContainer extends React.Component {
   componentDidMount() {
-    this.props.toggleFatching(true);
-
-    usersAPI
-      .getUsers(this.props.currentPage, this.props.pageSize)
-      .then((data) => {
-        this.props.toggleFatching(false);
-        this.props.setUsers(data.items);
-        this.props.setTotalCount(data.totalCount);
-      });
+    this.props.getUsers(this.props.currentPage, this.props.pageSize);
   }
 
   clickOnPageNum = (page) => {
-    this.props.toggleFatching(true);
-    this.props.setPage(page);
-
-    usersAPI.getUsers(page, this.props.pageSize).then((data) => {
-      this.props.toggleFatching(false);
-      this.props.setUsers(data.items);
-    });
+    this.props.getUsers(page, this.props.pageSize, page);
   };
 
   render() {
@@ -39,15 +16,12 @@ class UsersAPI extends React.Component {
       <Users
         totalUsersCount={this.props.totalUsersCount}
         pageSize={this.props.pageSize}
-        clickOnPageNum={this.clickOnPageNum}
-        onFollowClick={this.onFollowClick}
         currentPage={this.props.currentPage}
         users={this.props.users}
         isFetching={this.props.isFetching}
-        toggleFollowingProgress={this.props.toggleFollowingProgress}
-        follow={this.props.follow}
-        unfollow={this.props.unfollow}
         followingInProgress={this.props.followingInProgress}
+        clickOnPageNum={this.clickOnPageNum}
+        followClick={this.props.followClick}
       />
     );
   }
@@ -64,13 +38,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-const UsersContainer = connect(mapStateToProps, {
-  follow,
-  unfollow,
-  setUsers,
-  setPage,
-  setTotalCount,
-  toggleFatching,
-  toggleFollowingProgress,
-})(UsersAPI);
-export default UsersContainer;
+export default connect(mapStateToProps, {
+  getUsers,
+  followClick,
+})(UsersContainer);

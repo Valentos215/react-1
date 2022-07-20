@@ -1,24 +1,12 @@
-import { usersAPI } from "../../../../api/api";
 import UserImage from "../../../User/UserImage/UserImage";
 import s from "./UserItem.module.css";
 
 const UserItem = (props) => {
-  let button = () => (props.user.followed ? "Unfollow" : "Follow");
+  let buttonText = props.user.followed ? "Unfollow" : "Follow";
 
   const onButtonClick = () => {
     if (props.followingInProgress !== props.user.id) {
-      props.toggleFollowingProgress(props.user.id);
-      if (props.user.followed) {
-        usersAPI.unfollow(props.user.id).then((data) => {
-          if (data.resultCode === 0) props.unfollow(props.user.id);
-          props.toggleFollowingProgress(false);
-        });
-      } else {
-        usersAPI.follow(props.user.id).then((data) => {
-          if (data.resultCode === 0) props.follow(props.user.id);
-          props.toggleFollowingProgress(false);
-        });
-      }
+      props.followClick(props.user.id, props.user.followed);
     }
   };
 
@@ -34,7 +22,7 @@ const UserItem = (props) => {
           }
           onClick={onButtonClick}
         >
-          {button()}
+          {buttonText}
         </div>
       </div>
       <div className={s.usInfo}>
