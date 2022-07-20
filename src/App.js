@@ -9,6 +9,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import UsersContainer from "./Components/Content/Users/UsersContainer";
 import ProfileContainer from "./Components/Content/Profile/ProfileContainer";
 import HeaderContainer from "./Components/Header/HeaderContainer";
+import Login from "./Components/Content/Login/Login";
 
 const App = (props) => {
   return (
@@ -29,6 +30,7 @@ const App = (props) => {
             render={() => <Settings store={props.store} />}
           />
           <Route exact path="/users" render={() => <UsersContainer />} />
+          <Route exact path="/login" render={() => <Login />} />
         </div>
       </div>
     </BrowserRouter>

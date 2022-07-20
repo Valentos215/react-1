@@ -21,7 +21,7 @@ export const usersAPI = {
 };
 
 export const authAPI = {
-  getAuthUserData() {
+  getAuthMe() {
     return instance.get(`auth/me`).then((response) => response.data);
   },
 };

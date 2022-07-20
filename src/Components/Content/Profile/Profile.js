@@ -5,9 +5,7 @@ import WideImage from "./WideImage/WideImage";
 import Preloader from "../../Preloader/Preloader";
 
 const Profile = (props) => {
-  if (!props.profileData.profile) return <Preloader />;
-
-  if (props.isFetching) return <Preloader />;
+  if (!props.profileData.profile | props.isFetching) return <Preloader />;
   else
     return (
       <div className={s.profile}>

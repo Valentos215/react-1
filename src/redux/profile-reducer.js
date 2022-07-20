@@ -80,18 +80,16 @@ export const toggleProfileFatching = (isFatching) => ({
   isFatching,
 });
 
-export const getUserProfile = (id) => {
-  return (dispatch) => {
-    dispatch(toggleProfileFatching(true));
-    if (!id) {
-      dispatch(setMyProfile());
+export const getUserProfile = (id) => (dispatch) => {
+  dispatch(toggleProfileFatching(true));
+  if (!id) {
+    dispatch(setMyProfile());
+    dispatch(toggleProfileFatching(false));
+  } else
+    profileAPI.getUserProfile(id).then((data) => {
+      dispatch(setUserProfile(data));
       dispatch(toggleProfileFatching(false));
-    } else
-      profileAPI.getUserProfile(id).then((data) => {
-        dispatch(setUserProfile(data));
-        dispatch(toggleProfileFatching(false));
-      });
-  };
+    });
 };
 
 export default profileReducer;
