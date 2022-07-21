@@ -1,0 +1,28 @@
+.status {
+  position: absolute;
+  left: 600px;
+  top: 0;
+  display: flex;
+}
+.currentStatus {
+  position: relative;
+  font-size: 20px;
+}
+.emtyStatus {
+  position: relative;
+  font-size: 20px;
+  color: gray;
+}
+.newStatus {
+  padding: 10px;
+  background-color: #fff;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+}
+.input {
+  position: relative;
+  font-size: 18px;
+}

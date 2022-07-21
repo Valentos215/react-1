@@ -10,7 +10,12 @@ const Profile = (props) => {
     return (
       <div className={s.profile}>
         <WideImage />
-        <UserInfo user={props.profileData.profile} />
+        <UserInfo
+          user={props.profileData.profile}
+          status={props.status}
+          updateStatus={props.updateStatus}
+          id={props.match.params.id}
+        />
         <UsPostsContainer store={props.store} />
       </div>
     );

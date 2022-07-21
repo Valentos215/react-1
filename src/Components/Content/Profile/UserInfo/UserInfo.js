@@ -1,5 +1,6 @@
 import s from "./UserInfo.module.css";
 import noPhoto from "../../../../Images/08.png";
+import Status from "./Status/Status";
 
 const UserInfo = (props) => {
   let month = null;
@@ -14,6 +15,11 @@ const UserInfo = (props) => {
   }
   return (
     <div className={s.user}>
+      <Status
+        status={props.status}
+        updateStatus={props.updateStatus}
+        id={props.id}
+      />
       <div className={s.image}>
         <img
           alt="HZ"
