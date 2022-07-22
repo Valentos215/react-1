@@ -92,8 +92,10 @@ export const setStatus = (statusText) => ({
 export const getUserProfile = (id) => (dispatch) => {
   dispatch(toggleProfileFatching(true));
   if (!id) {
-    dispatch(setMyProfile());
-    dispatch(toggleProfileFatching(false));
+    profileAPI.getUserProfile(24975).then((data) => {
+      dispatch(setUserProfile(data));
+      dispatch(toggleProfileFatching(false));
+    });
   } else
     profileAPI.getUserProfile(id).then((data) => {
       dispatch(setUserProfile(data));

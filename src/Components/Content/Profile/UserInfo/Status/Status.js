@@ -5,7 +5,14 @@ class Status extends React.Component {
   state = {
     editMode: false,
     status: this.props.status,
+    overflow: false,
   };
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.status !== this.props.status)
+      this.setState({
+        status: this.props.status,
+      });
+  }
   statusText = () => {
     if (this.props.status) {
       return this.props.status;
@@ -25,14 +32,24 @@ class Status extends React.Component {
       });
     }
   };
-  deactivateEditMode = (e) => {
-    if (e.target.value.length > 299) alert("Max status length is 300 symbols");
-    else {
+  deactivateEditMode = () => {
+    this.setState({
+      editMode: false,
+    });
+    this.props.updateStatus(this.state.status);
+  };
+  changeStatus = (e) => {
+    this.setState({
+      overflow: false,
+    });
+    if (e.target.value.length > 50)
       this.setState({
-        editMode: false,
+        overflow: true,
       });
-      this.props.updateStatus(e.target.value);
-    }
+    else
+      this.setState({
+        status: e.target.value,
+      });
   };
 
   render() {
@@ -48,13 +65,13 @@ class Status extends React.Component {
         ) : (
           <div className={s.newStatus}>
             <input
-              className={s.input}
+              className={this.state.overflow ? s.overflow : s.input}
               type="text"
               onKeyDown={this.escapeKey}
               onBlur={this.deactivateEditMode}
               autoFocus={true}
-              //placeholder={this.props.status}
-              defaultValue={this.props.status}
+              onChange={this.changeStatus}
+              value={this.state.status}
             ></input>
           </div>
         )}
