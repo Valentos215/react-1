@@ -13,6 +13,7 @@ const UserInfo = (props) => {
       year = props.user.birthDay.getFullYear();
     }
   }
+
   return (
     <div className={s.user}>
       <Status

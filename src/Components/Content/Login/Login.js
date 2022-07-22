@@ -3,7 +3,7 @@ import s from "./Login.module.css";
 
 const LoginForm = (props) => {
   return (
-    <form onSubmit={props.handleSubmit} className={s.form}>
+    <form className={s.form}>
       <Field
         placeholder="Login"
         name={"login"}

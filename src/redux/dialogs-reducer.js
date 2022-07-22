@@ -1,5 +1,4 @@
 const SEND_MESSAGE = "SEND-MESSAGE";
-const CHANGE_MESSAGE = "CHANGE_MESSAGE";
 
 let initialState = {
   messagesData: [
@@ -19,25 +18,20 @@ let initialState = {
     { id: 10, message: "How many words in this message?", usId: 2 },
     { id: 11, message: "How many words in this message?", usId: 3 },
   ],
-  newMessageBody: "",
 };
 
 const dialogsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case CHANGE_MESSAGE:
-      return { ...state, newMessageBody: action.messageText };
-
     case SEND_MESSAGE:
       let newId = state.messagesData.length + 1;
       let newMessage = {
         id: newId,
-        message: state.newMessageBody,
+        message: action.messageText,
         usId: "i",
       };
       return {
         ...state,
         messagesData: [...state.messagesData, newMessage],
-        newMessageBody: "",
       };
 
     default:
@@ -45,10 +39,9 @@ const dialogsReducer = (state = initialState, action) => {
   }
 };
 
-export const sendMessage = () => ({ type: SEND_MESSAGE });
-export const changeMessage = (text) => ({
-  type: CHANGE_MESSAGE,
-  messageText: text,
+export const sendMessage = (messageText) => ({
+  type: SEND_MESSAGE,
+  messageText,
 });
 
 export default dialogsReducer;

@@ -33,10 +33,8 @@ const Dialogs = (props) => {
           />
           {myMessages}
           <NewMessage
-            changeMessage={props.changeMessage}
             sendMessage={props.sendMessage}
             profileData={props.profileData}
-            newMessageBody={props.dialogsPage.newMessageBody}
           />
         </div>
       </div>

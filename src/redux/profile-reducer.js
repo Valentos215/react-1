@@ -27,6 +27,7 @@ let initialState = {
   newPost: "",
   isFetching: false,
   status: "",
+  myId: null,
 };
 
 const profileReducer = (state = initialState, action) => {
