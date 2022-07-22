@@ -1,3 +1,51 @@
 .wrapper {
-  font-size: 20px;
+  position: relative;
+  margin: 0 auto;
+  top: 150px;
+  display: flex;
+  flex-direction: column;
+}
+.title {
+  position: relative;
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+.form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+.login {
+  position: relative;
+  font-size: 18px;
+}
+.password {
+  position: relative;
+  font-size: 18px;
+}
+.confilm {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.rememberMe {
+  position: relative;
+  display: inline-block;
+  font-size: 18px;
+}
+.button {
+  position: relative;
+  display: inline-block;
+  font-size: 18px;
+  line-height: 25px;
+  font-weight: 500;
+  text-align: center;
+  width: 80px;
+  height: 25px;
+  border-radius: 8px;
+  background-color: rgb(55, 154, 48);
+  cursor: pointer;
 }
