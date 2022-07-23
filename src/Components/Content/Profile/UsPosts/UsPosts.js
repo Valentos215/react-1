@@ -44,7 +44,7 @@ const UsPosts = (props) => {
           className={s.input}
         ></input>
         <div className={s.errorText}>
-          {!formik.isValid && formik.errors.postBody}
+          {formik.errors.postBody && formik.errors.postBody}
         </div>
         <div
           onClick={formik.handleSubmit}

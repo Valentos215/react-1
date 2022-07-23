@@ -49,7 +49,7 @@ const Status = (props) => {
       ) : (
         <div className={s.newStatus}>
           <input
-            className={overflow ? s.overflow : s.input}
+            className={overflow ? `${s.input} ${s.overflow}` : s.input}
             type="text"
             onKeyDown={escapeKey}
             onBlur={deactivateEditMode}
