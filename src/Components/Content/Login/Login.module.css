@@ -19,17 +19,31 @@
 .login {
   position: relative;
   font-size: 18px;
+  border: 1px solid #000;
+}
+.login.error {
+  border: 1px solid red;
+}
+.errorDescription {
+  color: red;
+  font-size: 14px;
+  line-height: 16px;
+  margin-left: 5px;
+  min-height: 16px;
 }
 .password {
   position: relative;
   font-size: 18px;
+  border: 1px solid #000;
+}
+.password.error {
+  border: 1px solid red;
 }
 .confilm {
   position: relative;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 10px;
 }
 .rememberMe {
   position: relative;
@@ -47,5 +61,9 @@
   height: 25px;
   border-radius: 8px;
   background-color: rgb(55, 154, 48);
+  color: #fff;
   cursor: pointer;
+}
+.button.disabled {
+  background-color: rgba(55, 154, 48, 0.6);
 }

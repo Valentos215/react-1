@@ -2,7 +2,6 @@ import { profileAPI } from "../api/api";
 import image6 from "../Images/06.jpg";
 
 const ADD_POST = "ADD_POST";
-const CHANGE_POST = "CHANGE_POST";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
 const SET_MY_PROFILE = "SET_MY_PROFILE";
 const TOGGLE_PROFILE_FATCHING = "TOGGLE_PROFILE_FATCHING";
@@ -24,24 +23,19 @@ let initialState = {
     ],
   },
   profile: null,
-  newPost: "",
   isFetching: false,
   status: "",
-  myId: null,
 };
 
 const profileReducer = (state = initialState, action) => {
   switch (action.type) {
-    case CHANGE_POST:
-      return { ...state, newPost: action.postMessage };
-
     case ADD_POST:
       let newId = state.myProfile.wallData.length + 1;
       let newPost = {
         id: newId,
-        text: state.newPost,
+        text: action.postText,
         likes: 0,
-        usId: 1,
+        usId: 2,
       };
       return {
         ...state,
@@ -49,7 +43,6 @@ const profileReducer = (state = initialState, action) => {
           ...state.myProfile,
           wallData: [...state.myProfile.wallData, newPost],
         },
-        newPost: "",
       };
 
     case SET_USER_PROFILE:
@@ -69,11 +62,7 @@ const profileReducer = (state = initialState, action) => {
   }
 };
 
-export const addPost = () => ({ type: ADD_POST });
-export const changePost = (text) => ({
-  type: CHANGE_POST,
-  postMessage: text,
-});
+export const addPost = (postText) => ({ type: ADD_POST, postText });
 export const setUserProfile = (profile) => ({
   type: SET_USER_PROFILE,
   profile,

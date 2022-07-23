@@ -15,12 +15,14 @@ const Status = (props) => {
 
   const activateEditMode = () => {
     if (!props.id) setEditMode(true);
+    setStatusBody(props.status);
   };
 
   const escapeKey = (e) => {
     if (e.key === "Escape") {
       setEditMode(false);
       setStatusBody(props.status);
+      setOverflow(false);
     }
   };
 

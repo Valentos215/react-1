@@ -1,8 +1,14 @@
 import React from "react";
 import PostedItem from "./PostedItem/PostedItem";
 import s from "./UsPosts.module.css";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 const UsPosts = (props) => {
+  const errorMes = {
+    length: "Post must be 80 characters or less",
+  };
+
   const postsArray = props.wallData.map((post) => (
     <PostedItem
       postText={post.text}
@@ -12,26 +18,38 @@ const UsPosts = (props) => {
     />
   ));
 
-  const onPostChange = (e) => {
-    props.changePost(e.target.value);
-  };
-  const onButtonClick = () => {
-    props.addPost();
-  };
+  const formik = useFormik({
+    initialValues: {
+      postBody: "",
+    },
+    validationSchema: Yup.object({
+      postBody: Yup.string().max(80, errorMes.length).required(""),
+    }),
+    onSubmit: (values) => {
+      props.addPost(values.postBody);
+      formik.handleReset();
+    },
+  });
 
   return (
-    <div className={s.my_posts}>
+    <div className={s.postsArea}>
       <div className={s.title}>My posts</div>
-      <form className={s.form}>
-        <p>
-          <textarea
-            onChange={onPostChange}
-            value={props.newPostBody}
-            placeholder="your news..."
-            className={s.input}
-          ></textarea>
-        </p>
-        <div onClick={onButtonClick} className={s.button}>
+      <form onSubmit={formik.handleSubmit} className={s.form}>
+        <input
+          name="postBody"
+          type="textarea"
+          onChange={formik.handleChange}
+          value={formik.values.postBody}
+          placeholder="your news..."
+          className={s.input}
+        ></input>
+        <div className={s.errorText}>
+          {!formik.isValid && formik.errors.postBody}
+        </div>
+        <div
+          onClick={formik.handleSubmit}
+          className={formik.isValid ? s.button : s.buttonDisabled}
+        >
           Send
         </div>
       </form>
