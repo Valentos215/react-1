@@ -23,8 +23,26 @@ s.loginBlock {
   position: relative;
 }
 .loginBlock a {
+  position: relative;
   color: #fff;
   font-size: 18px;
   border-radius: 5px;
   border: 1px solid #fff;
+  padding: 0 5px;
+  line-height: 25px;
+}
+.logined {
+  display: flex;
+  flex-direction: row;
+}
+.logout {
+  position: relative;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 5px;
+  border: 1px solid #fff;
+  padding: 0 5px;
+  margin-left: 10px;
+  line-height: 25px;
+  cursor: pointer;
 }
