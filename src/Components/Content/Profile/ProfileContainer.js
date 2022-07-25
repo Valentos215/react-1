@@ -11,12 +11,9 @@ import { withAuthRedirect } from "../../../hoc/withAuthRedirect";
 import { compose } from "redux";
 class ProfileContainer extends React.Component {
   componentDidMount() {
-    this.props.getUserProfile(this.props.match.params.id);
-    this.props.getUserStatus(this.props.match.params.id);
-  }
-  componentDidUpdate(prevProps, prevState) {
-    if (this.props.match.params.id !== prevProps.match.params.id)
-      this.props.getUserProfile(this.props.match.params.id);
+    let usId = this.props.match.params.id || this.props.authorId;
+    this.props.getUserProfile(usId);
+    this.props.getUserStatus(usId);
   }
   render() {
     return <Profile {...this.props} />;
@@ -27,6 +24,7 @@ let mapStateToProps = (state) => ({
   profileData: state.profileData,
   isFetching: state.profileData.isFetching,
   status: state.profileData.status,
+  authorId: state.auth.id,
 });
 
 export default compose(

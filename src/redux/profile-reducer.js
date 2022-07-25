@@ -81,29 +81,17 @@ export const setStatus = (statusText) => ({
 
 export const getUserProfile = (id) => (dispatch) => {
   dispatch(toggleProfileFatching(true));
-  if (!id) {
-    profileAPI.getUserProfile(24975).then((data) => {
-      dispatch(setUserProfile(data));
-      dispatch(toggleProfileFatching(false));
-    });
-  } else
-    profileAPI.getUserProfile(id).then((data) => {
-      dispatch(setUserProfile(data));
-      dispatch(toggleProfileFatching(false));
-    });
+  profileAPI.getUserProfile(id).then((data) => {
+    dispatch(setUserProfile(data));
+    dispatch(toggleProfileFatching(false));
+  });
 };
 
 export const getUserStatus = (id) => (dispatch) => {
-  if (!id)
-    profileAPI.getUserStatus(24975).then((data) => {
-      if (data) dispatch(setStatus(data));
-      else dispatch(setStatus(""));
-    });
-  else
-    profileAPI.getUserStatus(id).then((data) => {
-      if (data) dispatch(setStatus(data));
-      else dispatch(setStatus(""));
-    });
+  profileAPI.getUserStatus(id).then((data) => {
+    if (data) dispatch(setStatus(data));
+    else dispatch(setStatus(""));
+  });
 };
 
 export const updateStatus = (newStatusText) => (dispatch) => {

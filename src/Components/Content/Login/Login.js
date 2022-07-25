@@ -31,7 +31,7 @@ const Login = (props) => {
     }),
     onSubmit: (values) => {
       props.login(values.email, values.password, values.rememberMe);
-      formik.handleReset();
+      if (props.isAuth) formik.handleReset();
     },
   });
 
@@ -87,11 +87,13 @@ const Login = (props) => {
           </div>
         </div>
       </form>
+      <div className={s.responseError}>{props.responseError}</div>
     </div>
   );
 };
 
 let mapStateToProps = (state) => ({
   isAuth: state.auth.isAuth,
+  responseError: state.auth.responseError,
 });
 export default connect(mapStateToProps, { login })(Login);
