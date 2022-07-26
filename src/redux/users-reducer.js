@@ -111,15 +111,16 @@ export const toggleFollowingProgress = (isFatching) => ({
   isFatching,
 });
 
-export const getUsers = (currentPage, pageSize, changePage) => (dispatch) => {
-  dispatch(toggleFatching(true));
-  dispatch(setPage(changePage));
-  usersAPI.getUsers(currentPage, pageSize).then((data) => {
-    dispatch(toggleFatching(false));
-    dispatch(setUsers(data.items));
-    dispatch(setTotalCount(data.totalCount));
-  });
-};
+export const requestUsers =
+  (currentPage, pageSize, changePage) => (dispatch) => {
+    dispatch(toggleFatching(true));
+    dispatch(setPage(changePage));
+    usersAPI.getUsers(currentPage, pageSize).then((data) => {
+      dispatch(toggleFatching(false));
+      dispatch(setUsers(data.items));
+      dispatch(setTotalCount(data.totalCount));
+    });
+  };
 
 export const followClick = (id, followed) => (dispatch) => {
   dispatch(toggleFollowingProgress(id));
