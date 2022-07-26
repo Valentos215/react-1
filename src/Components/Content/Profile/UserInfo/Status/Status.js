@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import s from "./Status.module.css";
 
 const Status = (props) => {
   const [editMode, setEditMode] = useState(false);
   const [statusBody, setStatusBody] = useState(props.status);
   const [overflow, setOverflow] = useState(false);
+
+  useEffect(() => {
+    setStatusBody(props.status);
+  }, [props.status]);
 
   const statusText = () => {
     if (props.status) {
@@ -15,7 +19,6 @@ const Status = (props) => {
 
   const activateEditMode = () => {
     if (!props.id) setEditMode(true);
-    setStatusBody(props.status);
   };
 
   const escapeKey = (e) => {
