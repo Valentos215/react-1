@@ -5,7 +5,7 @@ import Users from "./Users";
 import { withAuthRedirect } from "../../../hoc/withAuthRedirect";
 import { compose } from "redux";
 import {
-  getUsers,
+  getUsersSuper,
   getPageSize,
   getTotalUsersCount,
   getCurrentPage,
@@ -39,7 +39,7 @@ class UsersContainer extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    users: getUsers(state),
+    users: getUsersSuper(state),
     pageSize: getPageSize(state),
     totalUsersCount: getTotalUsersCount(state),
     currentPage: getCurrentPage(state),
