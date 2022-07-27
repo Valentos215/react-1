@@ -3,10 +3,12 @@ import PostedItem from "./PostedItem/PostedItem";
 import s from "./UsPosts.module.css";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { connect } from "react-redux";
+import { addPost } from "../../../../redux/profile-reducer";
 
-const UsPosts = (props) => {
+const UsPosts = React.memo((props) => {
   const errorMes = {
-    length: "Post must be 80 characters or less",
+    length: "Post must be 75 characters or less",
   };
 
   const postsArray = props.wallData.map((post) => (
@@ -23,7 +25,7 @@ const UsPosts = (props) => {
       postBody: "",
     },
     validationSchema: Yup.object({
-      postBody: Yup.string().max(80, errorMes.length).required(""),
+      postBody: Yup.string().max(75, errorMes.length).required(""),
     }),
     onSubmit: (values) => {
       props.addPost(values.postBody);
@@ -56,6 +58,13 @@ const UsPosts = (props) => {
       <div className={s.posted}>{postsArray}</div>
     </div>
   );
+});
+
+const mapStateToProps = (state) => {
+  return {
+    wallData: state.profileData.myProfile.wallData,
+    users: state.usersData.users,
+  };
 };
 
-export default UsPosts;
+export default connect(mapStateToProps, { addPost })(UsPosts);

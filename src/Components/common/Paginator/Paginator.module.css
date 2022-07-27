@@ -1,0 +1,13 @@
+.wrapper {
+  position: relative;
+  margin-bottom: 30px;
+  margin-left: 30px;
+}
+.wrapper span {
+  cursor: pointer;
+  margin-left: 10px;
+  font-size: 18px;
+}
+.wrapper span.selectedPage {
+  font-weight: 700;
+}
