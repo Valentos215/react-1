@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import { connect } from "react-redux";
 import { login } from "../../../redux/auth-reducer";
 import { Redirect } from "react-router-dom";
+import { compose } from "redux";
 
 const Login = (props) => {
   const errorMes = {
@@ -100,4 +101,5 @@ let mapStateToProps = (state) => ({
   isAuth: state.auth.isAuth,
   responseError: state.auth.responseError,
 });
-export default connect(mapStateToProps, { login })(Login);
+
+export default compose(connect(mapStateToProps, { login }))(Login);

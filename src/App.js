@@ -9,10 +9,12 @@ import { BrowserRouter, Route } from "react-router-dom";
 import UsersContainer from "./Components/Content/Users/UsersContainer";
 import ProfileContainer from "./Components/Content/Profile/ProfileContainer";
 import Header from "./Components/Header/Header";
-import Login from "./Components/Content/Login/Login";
+//import Login from "./Components/Content/Login/Login";
 import { connect } from "react-redux";
 import { initializeApp } from "./redux/app-reducer";
 import Preloader from "./Components/common/Preloader/Preloader";
+import { withSuspense } from "./hoc/withSuspense";
+const Login = React.lazy(() => import("./Components/Content/Login/Login"));
 
 const App = (props) => {
   useEffect(() => {
@@ -32,7 +34,7 @@ const App = (props) => {
           <Route path="/music" render={() => <Music />} />
           <Route path="/settings" render={() => <Settings />} />
           <Route exact path="/users" render={() => <UsersContainer />} />
-          <Route exact path="/login" render={() => <Login />} />
+          <Route exact path="/login" render={withSuspense(Login)} />
         </div>
       </div>
     </BrowserRouter>
