@@ -1,15 +1,10 @@
 import React from "react";
 import UserItem from "./UserItem/UserItem";
 import s from "./Users.module.css";
-import Preloader from "../../../Components/Preloader/Preloader";
+import Preloader from "../../common/Preloader/Preloader";
+import Paginator from "../../common/Paginator/Paginator";
 
 const Users = (props) => {
-  let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-  let pages = [];
-  for (let i = 1; i <= pagesCount && i <= 30; i++) {
-    pages.push(i);
-  }
-
   const userList = props.users.map((u) => (
     <UserItem
       user={u}
@@ -22,17 +17,12 @@ const Users = (props) => {
   return (
     <div className={s.wrapper}>
       <div className={s.title}>Users</div>
-      <div className={s.nav}>
-        {pages.map((p) => (
-          <span
-            key={p}
-            className={props.currentPage === p ? s.selectedPage : null}
-            onClick={() => props.clickOnPageNum(p)}
-          >
-            {p}
-          </span>
-        ))}
-      </div>
+      <Paginator
+        totalUsersCount={props.totalUsersCount}
+        pageSize={props.pageSize}
+        currentPage={props.currentPage}
+        clickOnPageNum={props.clickOnPageNum}
+      />
       <div className={s.usersArea}>
         {props.isFetching ? <Preloader /> : userList}
       </div>

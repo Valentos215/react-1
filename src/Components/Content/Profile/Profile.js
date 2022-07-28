@@ -1,24 +1,25 @@
 import UserInfo from "./UserInfo/UserInfo";
 import s from "./Profile.module.css";
-import UsPostsContainer from "./UsPosts/UsPostsContainer";
+import UsPosts from "./UsPosts/UsPosts";
 import WideImage from "./WideImage/WideImage";
-import Preloader from "../../Preloader/Preloader";
+import Preloader from "../../common/Preloader/Preloader";
+import React from "react";
 
-const Profile = (props) => {
-  if (!props.profileData.profile | props.isFetching) return <Preloader />;
+const Profile = React.memo((props) => {
+  if (!props.profile | props.isFetching) return <Preloader />;
   else
     return (
       <div className={s.profile}>
         <WideImage />
         <UserInfo
-          user={props.profileData.profile}
+          user={props.profile}
           status={props.status}
           updateStatus={props.updateStatus}
           id={props.match.params.id}
         />
-        <UsPostsContainer store={props.store} />
+        <UsPosts />
       </div>
     );
-};
+});
 
 export default Profile;

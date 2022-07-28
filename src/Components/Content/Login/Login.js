@@ -5,7 +5,9 @@ import { connect } from "react-redux";
 import { login } from "../../../redux/auth-reducer";
 import { Redirect } from "react-router-dom";
 
-const Login = (props) => {
+const Login = ({ props }) => {
+  console.log("Yo");
+
   const errorMes = {
     emailLength: "Email must be 30 characters or less",
     emailRequired: "Email is required",
@@ -81,7 +83,11 @@ const Login = (props) => {
           </div>
           <div
             onClick={formik.handleSubmit}
-            className={formik.isValid ? s.button : `${s.button} ${s.disabled}`}
+            className={
+              !formik.isValid || props.isAuth === 0
+                ? `${s.button} ${s.disabled}`
+                : s.button
+            }
           >
             Sign In
           </div>

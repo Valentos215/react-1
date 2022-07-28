@@ -2,35 +2,29 @@ import s from "./UserInfo.module.css";
 import noPhoto from "../../../../Images/08.png";
 import Status from "./Status/Status";
 
-const UserInfo = (props) => {
+const UserInfo = ({ user, status, updateStatus, id }) => {
   let month = null;
   let day = null;
   let year = null;
-  if (props.user) {
-    if (props.user.birthDay) {
-      month = props.user.birthDay.toLocaleString("en-US", { month: "long" });
-      day = props.user.birthDay.toLocaleString("en-US", { day: "2-digit" });
-      year = props.user.birthDay.getFullYear();
+  if (user) {
+    if (user.birthDay) {
+      month = user.birthDay.toLocaleString("en-US", { month: "long" });
+      day = user.birthDay.toLocaleString("en-US", { day: "2-digit" });
+      year = user.birthDay.getFullYear();
     }
   }
 
   return (
     <div className={s.user}>
-      <Status
-        status={props.status}
-        updateStatus={props.updateStatus}
-        id={props.id}
-      />
+      <Status status={status} updateStatus={updateStatus} id={id} />
       <div className={s.image}>
         <img
           alt="HZ"
-          src={props.user.photos.large ? props.user.photos.large : noPhoto}
+          src={user.photos.large ? user.photos.large : noPhoto}
         ></img>
       </div>
       <div className={s.description}>
-        <div className={s.name}>
-          {props.user.fullName ? props.user.fullName : null}
-        </div>
+        <div className={s.name}>{user.fullName ? user.fullName : null}</div>
         <div className={s.data}>
           <ul>
             <li>
@@ -39,20 +33,18 @@ const UserInfo = (props) => {
             <li>
               City:{" "}
               <a href="https://google.com">
-                {props.user.location ? props.user.location.city : null}
+                {user.location ? user.location.city : null}
               </a>
             </li>
             <li>
               About Me:{" "}
               <a href="https://google.com">
-                {props.user.aboutMe ? props.user.aboutMe : null}
+                {user.aboutMe ? user.aboutMe : null}
               </a>
             </li>
             <li>
               Web Site:{" "}
-              <a href={props.user.webSite}>
-                {props.user.webSite ? props.user.webSite : null}
-              </a>
+              <a href={user.webSite}>{user.webSite ? user.webSite : null}</a>
             </li>
           </ul>
         </div>

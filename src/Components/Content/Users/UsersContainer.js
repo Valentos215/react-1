@@ -14,11 +14,13 @@ import {
 } from "../../../redux/users-selectors";
 class UsersContainer extends React.Component {
   componentDidMount() {
-    this.props.requestUsers(this.props.currentPage, this.props.pageSize);
+    const { requestUsers, currentPage, pageSize } = this.props;
+    requestUsers(currentPage, pageSize);
   }
 
   clickOnPageNum = (page) => {
-    this.props.requestUsers(page, this.props.pageSize, page);
+    const { requestUsers, pageSize } = this.props;
+    requestUsers(page, pageSize, page);
   };
 
   render() {

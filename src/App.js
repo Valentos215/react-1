@@ -12,7 +12,7 @@ import HeaderContainer from "./Components/Header/HeaderContainer";
 import Login from "./Components/Content/Login/Login";
 import { connect } from "react-redux";
 import { initializeApp } from "./redux/app-reducer";
-import Preloader from "./Components/Preloader/Preloader";
+import Preloader from "./Components/common/Preloader/Preloader";
 
 class App extends React.Component {
   componentDidMount() {
@@ -31,10 +31,7 @@ class App extends React.Component {
               render={() => <ProfileContainer store={this.props.store} />}
             />
             <Route path="/dialogs" render={() => <DialogsContainer />} />
-            <Route
-              path="/news"
-              render={() => <News store={this.props.store} />}
-            />
+            <Route path="/news" render={() => <News />} />
             <Route
               path="/music"
               render={() => <Music store={this.props.store} />}
@@ -57,7 +54,3 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { initializeApp })(App);
-// export default compose(
-//   withRouter,
-//   connect(mapStateToProps, { getAuthUserData })
-// )(App);
