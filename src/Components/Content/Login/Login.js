@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { login } from "../../../redux/auth-reducer";
 import { Redirect } from "react-router-dom";
 
-const Login = ({ props }) => {
+const Login = (props) => {
   console.log("Yo");
 
   const errorMes = {

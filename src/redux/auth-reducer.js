@@ -45,20 +45,21 @@ export const getAuthUserData = () => async (dispatch) => {
 
 export const login =
   (email, password, rememberMe = false) =>
-  async (dispatch) => {
-    let data = await authAPI.login(email, password, rememberMe);
+  (dispatch) => {
     dispatch(setResponseError(null));
     dispatch(setAuthUserData(null, null, null, 0));
-    if (data.resultCode === 0) {
-      dispatch(getAuthUserData());
-    } else {
-      dispatch(setAuthUserData(null, null, null, false));
-      dispatch(
-        setResponseError(
-          data.messages.length > 0 ? data.messages : "Some server error"
-        )
-      );
-    }
+    authAPI.login(email, password, rememberMe).then((data) => {
+      if (data.resultCode === 0) {
+        dispatch(getAuthUserData());
+      } else {
+        dispatch(setAuthUserData(null, null, null, false));
+        dispatch(
+          setResponseError(
+            data.messages.length > 0 ? data.messages : "Some server error"
+          )
+        );
+      }
+    });
   };
 
 export const logout = () => async (dispatch) => {

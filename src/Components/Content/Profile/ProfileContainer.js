@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Profile from "./Profile";
 import { connect } from "react-redux";
 import {
@@ -10,17 +10,14 @@ import { withRouter } from "react-router-dom";
 import { withAuthRedirect } from "../../../hoc/withAuthRedirect";
 import { compose } from "redux";
 
-const ProfileContainer = (props) => {
+const ProfileContainer = React.memo((props) => {
   useEffect(() => {
-    getUserProfile(props.match.params.id || props.authorId);
-    getUserStatus(props.match.params.id || props.authorId);
+    props.getUserProfile(props.match.params.id || props.authorId);
+    props.getUserStatus(props.match.params.id || props.authorId);
   }, []);
 
-  // this.props.getUserProfile(usId);
-  //this.props.getUserStatus(usId);
-
   return <Profile {...props} />;
-};
+});
 
 let mapStateToProps = (state) => ({
   profile: state.profileData.profile,
