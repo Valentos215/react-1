@@ -2,12 +2,29 @@
   position: relative;
   margin-bottom: 30px;
   margin-left: 30px;
+  display: flex;
+  flex-direction: row;
 }
-.wrapper span {
+.pages {
+  position: relative;
+  top: 3px;
+  margin-right: 10px;
+}
+.pages span {
   cursor: pointer;
   margin-left: 10px;
   font-size: 18px;
 }
-.wrapper span.selectedPage {
+.pages span.selectedPage {
   font-weight: 700;
+}
+.portion {
+  position: relative;
+  color: #fff;
+  padding: 0 5px;
+  background-color: rgba(0, 128, 255, 0.5);
+  font-size: 18px;
+  line-height: 25px;
+  border-radius: 8px;
+  cursor: pointer;
 }

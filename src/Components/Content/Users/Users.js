@@ -18,8 +18,9 @@ const Users = (props) => {
     <div className={s.wrapper}>
       <div className={s.title}>Users</div>
       <Paginator
-        totalUsersCount={props.totalUsersCount}
+        totalItemsCount={props.totalUsersCount}
         pageSize={props.pageSize}
+        portionSize={10}
         currentPage={props.currentPage}
         clickOnPageNum={props.clickOnPageNum}
       />
