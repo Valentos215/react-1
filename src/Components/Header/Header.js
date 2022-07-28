@@ -1,7 +1,10 @@
 import { NavLink } from "react-router-dom";
 import s from "./Header.module.css";
+import { connect } from "react-redux";
+import { logout } from "../../redux/auth-reducer";
+import React from "react";
 
-const Header = (props) => {
+const Header = React.memo((props) => {
   return (
     <header className={s.header}>
       <div className={s.logo}>
@@ -24,6 +27,11 @@ const Header = (props) => {
       </div>
     </header>
   );
-};
+});
 
-export default Header;
+const mapStateToProps = (state) => ({
+  login: state.auth.login,
+  isAuth: state.auth.isAuth,
+});
+
+export default connect(mapStateToProps, { logout })(Header);

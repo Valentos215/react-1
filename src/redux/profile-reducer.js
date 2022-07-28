@@ -79,9 +79,9 @@ export const setStatus = (statusText) => ({
   statusText,
 });
 
-export const getUserProfile = (id) => (dispatch) => {
+export const getUserProfile = (currentId) => (dispatch) => {
   dispatch(toggleProfileFatching(true));
-  profileAPI.getUserProfile(id).then((data) => {
+  profileAPI.getUserProfile(currentId).then((data) => {
     dispatch(setUserProfile(data));
     dispatch(toggleProfileFatching(false));
   });

@@ -3,8 +3,13 @@ import MyMessage from "./MyMessage/MyMessage";
 import DialogItem from "./DialogItem/DialogItem";
 import FriendMessage from "./FriendMessage/FriendMessage";
 import NewMessage from "./NewMessage/NewMessage";
+import React from "react";
+import { compose } from "redux";
+import { connect } from "react-redux";
+import { withAuthRedirect } from "../../../hoc/withAuthRedirect";
+import { sendMessage } from "../../../redux/dialogs-reducer";
 
-const Dialogs = (props) => {
+const Dialogs = React.memo((props) => {
   const dialogsArray = props.users
     .slice(0, 10)
     .map((d) => <DialogItem user={d} key={d.id} />);
@@ -40,6 +45,17 @@ const Dialogs = (props) => {
       </div>
     </div>
   );
+});
+
+const mapStateToProps = (state) => {
+  return {
+    profileData: state.profileData,
+    dialogsPage: state.dialogsPage,
+    users: state.usersData.users,
+  };
 };
 
-export default Dialogs;
+export default compose(
+  connect(mapStateToProps, { sendMessage }),
+  withAuthRedirect
+)(Dialogs);

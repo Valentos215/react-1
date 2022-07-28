@@ -11,7 +11,7 @@ const DialogItem = (props) => {
           to={"/dialogs/" + props.user.id}
           activeClassName={s.activeLink}
         >
-          {props.user.name}
+          {props.user.name.slice(0, 15)}
         </NavLink>
       </div>
     </div>

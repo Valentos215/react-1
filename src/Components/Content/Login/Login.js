@@ -6,8 +6,6 @@ import { login } from "../../../redux/auth-reducer";
 import { Redirect } from "react-router-dom";
 
 const Login = (props) => {
-  console.log("Yo");
-
   const errorMes = {
     emailLength: "Email must be 30 characters or less",
     emailRequired: "Email is required",

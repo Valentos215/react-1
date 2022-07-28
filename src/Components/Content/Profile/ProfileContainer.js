@@ -21,8 +21,8 @@ const ProfileContainer = React.memo((props) => {
 
 let mapStateToProps = (state) => ({
   profile: state.profileData.profile,
-  isFetching: state.profileData.isFetching,
   status: state.profileData.status,
+  isFetching: state.profileData.isFetching,
   authorId: state.auth.id,
 });
 
