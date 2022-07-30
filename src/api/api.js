@@ -24,9 +24,9 @@ export const authAPI = {
   getAuthMe() {
     return instance.get(`auth/me`).then((response) => response.data);
   },
-  login(email, password, rememberMe) {
+  login(email, password, rememberMe, captcha = null) {
     return instance
-      .post(`auth/login`, { email, password, rememberMe })
+      .post(`auth/login`, { email, password, rememberMe, captcha })
       .then((response) => response.data);
   },
   logout() {
@@ -62,6 +62,14 @@ export const profileAPI = {
   saveProfile(profileData) {
     return instance
       .put(`profile`, profileData)
+      .then((response) => response.data);
+  },
+};
+
+export const securityAPI = {
+  getCaptchaUrl() {
+    return instance
+      .get(`security/get-captcha-url`)
       .then((response) => response.data);
   },
 };

@@ -1,7 +1,8 @@
-import { authAPI } from "../api/api";
+import { authAPI, securityAPI } from "../api/api";
 
 const SET_AUTH_USER_DATA = "SET_AUTH_USER_DATA";
 const SET_RESPONSE_ERROR = "SET_RESPONSE_ERROR";
+const SET_CAPTCHA_URL = "SET_CAPTCHA_URL";
 
 let initialState = {
   id: null,
@@ -9,6 +10,7 @@ let initialState = {
   login: null,
   isAuth: false,
   responseError: null,
+  captchaUrl: null,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -18,6 +20,9 @@ const authReducer = (state = initialState, action) => {
 
     case SET_RESPONSE_ERROR:
       return { ...state, responseError: action.errorText };
+
+    case SET_CAPTCHA_URL:
+      return { ...state, captchaUrl: action.url };
 
     default:
       return state;
@@ -32,6 +37,10 @@ const setResponseError = (errorText) => ({
   type: SET_RESPONSE_ERROR,
   errorText,
 });
+const setCaptchaUrl = (url) => ({
+  type: SET_CAPTCHA_URL,
+  url,
+});
 
 export const getAuthUserData = () => async (dispatch) => {
   let data = await authAPI.getAuthMe();
@@ -44,14 +53,15 @@ export const getAuthUserData = () => async (dispatch) => {
 };
 
 export const login =
-  (email, password, rememberMe = false) =>
+  (email, password, rememberMe = false, captcha) =>
   (dispatch) => {
     dispatch(setResponseError(null));
     dispatch(setAuthUserData(null, null, null, 0));
-    authAPI.login(email, password, rememberMe).then((data) => {
+    return authAPI.login(email, password, rememberMe, captcha).then((data) => {
       if (data.resultCode === 0) {
         dispatch(getAuthUserData());
       } else {
+        if (data.resultCode === 10) dispatch(getCaptchaUrl());
         dispatch(setAuthUserData(null, null, null, false));
         dispatch(
           setResponseError(
@@ -67,5 +77,9 @@ export const logout = () => async (dispatch) => {
   if (data.resultCode === 0) {
     dispatch(setAuthUserData(null, null, null, false));
   }
+};
+
+export const getCaptchaUrl = () => (dispatch) => {
+  securityAPI.getCaptchaUrl().then((data) => dispatch(setCaptchaUrl(data.url)));
 };
 export default authReducer;

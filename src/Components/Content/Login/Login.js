@@ -13,6 +13,7 @@ const Login = (props) => {
     incorrect: "Incorrect email",
     passwordLength: "Password must be 20 characters or less",
     passwordRequired: "Password is required",
+    captchaLength: "Password must be 20 characters or less",
   };
 
   const formik = useFormik({
@@ -20,6 +21,7 @@ const Login = (props) => {
       email: "",
       password: "",
       rememberMe: false,
+      captcha: "",
     },
     validationSchema: Yup.object({
       email: Yup.string()
@@ -29,9 +31,15 @@ const Login = (props) => {
       password: Yup.string()
         .max(20, errorMes.passwordLength)
         .required(errorMes.passwordRequired),
+      captcha: Yup.string().max(20, errorMes.captchaLength).nullable(),
     }),
     onSubmit: (values) => {
-      props.login(values.email, values.password, values.rememberMe);
+      props.login(
+        values.email,
+        values.password,
+        values.rememberMe,
+        values.captcha
+      );
       if (props.isAuth) formik.handleReset();
     },
   });
@@ -71,6 +79,18 @@ const Login = (props) => {
         <div className={s.errorDescription}>
           {passwordError ? formik.errors.password : null}
         </div>
+        {props.captchaUrl && (
+          <div className={s.captcha}>
+            <img alt="HZ" src={props.captchaUrl}></img>
+            <input
+              name="captcha"
+              value={formik.values.captcha}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              placeholder="Type the word above"
+            ></input>
+          </div>
+        )}
         <div className={s.confilm}>
           <div className={s.rememberMe}>
             <input
@@ -101,6 +121,7 @@ const Login = (props) => {
 let mapStateToProps = (state) => ({
   isAuth: state.auth.isAuth,
   responseError: state.auth.responseError,
+  captchaUrl: state.auth.captchaUrl,
 });
 
 export default compose(connect(mapStateToProps, { login }))(Login);
