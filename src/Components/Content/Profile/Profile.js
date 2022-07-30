@@ -15,7 +15,9 @@ const Profile = React.memo((props) => {
           user={props.profile}
           status={props.status}
           updateStatus={props.updateStatus}
-          id={props.match.params.id}
+          isOwner={props.isOwner}
+          savePhoto={props.savePhoto}
+          saveProfile={props.saveProfile}
         />
         <UsPosts />
       </div>

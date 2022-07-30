@@ -1,0 +1,53 @@
+.wrapper {
+  position: relative;
+  margin-top: 20px;
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  margin-bottom: 50px;
+}
+.fieldItem {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.label {
+  position: relative;
+  font-size: 18px;
+  font-weight: 500;
+}
+.input {
+  position: relative;
+  font-size: 18px;
+  border-radius: 7px;
+  border: 1px solid rgba(0, 128, 255, 0.6);
+  margin-bottom: 5px;
+  width: 400px;
+  padding-left: 5px;
+}
+.input.error {
+  border-color: red;
+}
+.buttonsArea {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+.button {
+  position: relative;
+  cursor: pointer;
+  background-color: rgb(55, 154, 48);
+  height: 25px;
+  line-height: 25px;
+  width: 90px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  border-radius: 8px;
+  margin-left: 20px;
+}

@@ -6,15 +6,27 @@ const SET_USER_PROFILE = "SET_USER_PROFILE";
 const SET_MY_PROFILE = "SET_MY_PROFILE";
 const TOGGLE_PROFILE_FATCHING = "TOGGLE_PROFILE_FATCHING";
 const SET_STATUS = "SET_STATUS";
+const SAVE_PHOTO_SUCCESS = "SAVE_PHOTO_SUCCESS";
+const SAVE_PROFILE_SUCCESS = "SAVE_PROFILE_SUCCESS";
 
 let initialState = {
   myProfile: {
     name: "Vale",
-    sureName: "Kharkov",
-    location: { country: "Ukraine", city: "Kiev" },
-    aboutMe: "KPI",
-    webSite: "https://google.com",
-    birthDay: new Date(1992, 2, 18),
+    fullName: "Vale",
+    lookingForAJobDescription: null,
+    location: { country: null, city: null },
+    aboutMe: null,
+    contacts: {
+      facebook: null,
+      github: null,
+      instagram: null,
+      mainLink: null,
+      twitter: null,
+      vk: null,
+      website: null,
+      youtube: null,
+    },
+    webSite: null,
     photos: { small: image6, large: image6 },
     wallData: [
       { id: 1, text: "Hey, why nobody love me?", likes: 10, usId: 1 },
@@ -57,6 +69,12 @@ const profileReducer = (state = initialState, action) => {
     case SET_STATUS:
       return { ...state, status: action.statusText };
 
+    case SAVE_PHOTO_SUCCESS:
+      return { ...state, profile: { ...state.profile, photos: action.photos } };
+
+    case SAVE_PROFILE_SUCCESS:
+      return { ...state, profile: { ...state.profile, ...action.profileData } };
+
     default:
       return state;
   }
@@ -78,6 +96,14 @@ export const setStatus = (statusText) => ({
   type: SET_STATUS,
   statusText,
 });
+export const sevePhotoSuccess = (photos) => ({
+  type: SAVE_PHOTO_SUCCESS,
+  photos,
+});
+export const seveProfileSuccess = (profileData) => ({
+  type: SAVE_PROFILE_SUCCESS,
+  profileData,
+});
 
 export const getUserProfile = (currentId) => (dispatch) => {
   dispatch(toggleProfileFatching(true));
@@ -96,6 +122,14 @@ export const getUserStatus = (id) => async (dispatch) => {
 export const updateStatus = (newStatusText) => async (dispatch) => {
   let data = await profileAPI.updateStatus(newStatusText);
   if (data.resultCode === 0) dispatch(setStatus(newStatusText));
+};
+export const savePhoto = (imgFile) => async (dispatch) => {
+  let data = await profileAPI.savePhoto(imgFile);
+  if (data.resultCode === 0) dispatch(sevePhotoSuccess(data.data.photos));
+};
+export const saveProfile = (profileData) => async (dispatch) => {
+  let data = await profileAPI.saveProfile(profileData);
+  if (data.resultCode === 0) dispatch(seveProfileSuccess(profileData));
 };
 
 export default profileReducer;

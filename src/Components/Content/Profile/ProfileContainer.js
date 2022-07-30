@@ -5,6 +5,8 @@ import {
   getUserProfile,
   getUserStatus,
   updateStatus,
+  savePhoto,
+  saveProfile,
 } from "../../../redux/profile-reducer";
 import { withRouter } from "react-router-dom";
 import { withAuthRedirect } from "../../../hoc/withAuthRedirect";
@@ -16,7 +18,9 @@ const ProfileContainer = React.memo((props) => {
     props.getUserStatus(props.match.params.id || props.authorId);
   }, []);
 
-  return <Profile {...props} />;
+  let isOwner = !props.match.params.id;
+
+  return <Profile isOwner={isOwner} {...props} />;
 });
 
 let mapStateToProps = (state) => ({
@@ -27,7 +31,13 @@ let mapStateToProps = (state) => ({
 });
 
 export default compose(
-  connect(mapStateToProps, { updateStatus, getUserProfile, getUserStatus }),
+  connect(mapStateToProps, {
+    updateStatus,
+    getUserProfile,
+    getUserStatus,
+    savePhoto,
+    saveProfile,
+  }),
   withRouter,
   withAuthRedirect
 )(ProfileContainer);

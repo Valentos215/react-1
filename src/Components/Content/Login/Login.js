@@ -77,6 +77,7 @@ const Login = (props) => {
               name="rememberMe"
               type="checkbox"
               onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
             />{" "}
             Remember me
           </div>

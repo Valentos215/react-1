@@ -18,7 +18,7 @@ const Status = (props) => {
   };
 
   const activateEditMode = () => {
-    if (!props.id) setEditMode(true);
+    if (props.isOwner) setEditMode(true);
   };
 
   const escapeKey = (e) => {

@@ -4,13 +4,19 @@
   flex-direction: row;
   margin: 20px 0 50px 0;
 }
-.image {
+.avatar {
   margin-right: 10px;
 }
-.image img {
+.avatar img {
   height: 170px;
 }
+.imgLoader {
+  position: absolute;
+  left: 5px;
+  top: 175px;
+}
 .description {
+  margin-left: 20px;
 }
 
 .name {
@@ -20,13 +26,26 @@
 }
 .data {
 }
-.data li {
+.field {
   font-size: 18px;
   line-height: 30px;
   list-style: none;
-  font-weight: 500;
+  font-weight: 700;
 }
-.data a {
-  color: #000;
-  text-decoration: none;
+.field span {
+  font-weight: 400;
+}
+.button {
+  margin-top: 10px;
+  position: relative;
+  cursor: pointer;
+  background-color: rgb(55, 154, 48);
+  height: 25px;
+  line-height: 25px;
+  width: 90px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  border-radius: 8px;
 }
