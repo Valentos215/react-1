@@ -1,6 +1,7 @@
 import s from "./ProfileForm.module.css";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useState } from "react";
 
 const ProfileForm = ({ setEditMode, profile, saveProfile }) => {
   let fieldsArray = [
@@ -25,6 +26,7 @@ const ProfileForm = ({ setEditMode, profile, saveProfile }) => {
     { label: "Instagram", name: "instagram", placeholder: "instagram.com/..." },
     { label: "Github", name: "github", placeholder: "github.com/..." },
   ];
+  const [errormes, setErrormes] = useState(null);
 
   const formik = useFormik({
     initialValues: {
@@ -48,7 +50,6 @@ const ProfileForm = ({ setEditMode, profile, saveProfile }) => {
       github: Yup.string().max(40, " ").nullable(),
     }),
     onSubmit: (values) => {
-      setEditMode(false);
       let profileData = {
         fullName: values.fullName,
         aboutMe: values.aboutMe,
@@ -65,7 +66,10 @@ const ProfileForm = ({ setEditMode, profile, saveProfile }) => {
           mainLink: null,
         },
       };
-      saveProfile(profileData);
+      saveProfile(profileData).then((error) => {
+        if (!error) setEditMode(false);
+        else setErrormes(error);
+      });
     },
   });
 
@@ -100,6 +104,7 @@ const ProfileForm = ({ setEditMode, profile, saveProfile }) => {
           Submit
         </div>
       </div>
+      {errormes && <div className={s.error}>{errormes}</div>}
     </form>
   );
 };

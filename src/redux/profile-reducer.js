@@ -130,6 +130,7 @@ export const savePhoto = (imgFile) => async (dispatch) => {
 export const saveProfile = (profileData) => async (dispatch) => {
   let data = await profileAPI.saveProfile(profileData);
   if (data.resultCode === 0) dispatch(seveProfileSuccess(profileData));
+  else return data.messages[0];
 };
 
 export default profileReducer;

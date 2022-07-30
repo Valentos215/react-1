@@ -51,3 +51,8 @@
   border-radius: 8px;
   margin-left: 20px;
 }
+.error {
+  color: red;
+  font-size: 18px;
+  margin-top: -18px;
+}
