@@ -2,6 +2,7 @@ import s from "./ProfileForm.module.css";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useState } from "react";
+import Preloader from "../../../../common/Preloader/Preloader";
 
 const ProfileForm = ({ setEditMode, profile, saveProfile }) => {
   let fieldsArray = [
@@ -27,6 +28,7 @@ const ProfileForm = ({ setEditMode, profile, saveProfile }) => {
     { label: "Github", name: "github", placeholder: "github.com/..." },
   ];
   const [errormes, setErrormes] = useState(null);
+  const [fetching, setFetching] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -66,13 +68,16 @@ const ProfileForm = ({ setEditMode, profile, saveProfile }) => {
           mainLink: null,
         },
       };
+      setFetching(true);
       saveProfile(profileData).then((error) => {
+        setFetching(false);
         if (!error) setEditMode(false);
         else setErrormes(error);
       });
     },
   });
 
+  if (fetching) return <Preloader />;
   return (
     <form onSubmit={formik.handleSubmit} className={s.wrapper}>
       {fieldsArray.map((field) => {
